@@ -1,0 +1,13 @@
+.navbar-top-links li select {
+  min-height: 40px;
+  margin: 5px 0px;
+}
+
+.chat-panel .panel-body {
+  height: auto;
+  overflow-y: hidden;
+}
+
+#page-wrapper {
+  margin: 0;
+}
