@@ -13,7 +13,6 @@ describe('GitStatistics', function() {
     console.log(tmpRepoPath.path);
 
     var ncp = require('ncp').ncp;
-    //ncp.limit = 16;
 
     // Copy test repos to tmp dir
     ncp(path.join(__dirname, 'repos'), tmpRepoPath.path, function(err) {
@@ -22,14 +21,6 @@ describe('GitStatistics', function() {
       }
 
       var repos = fs.readdirSync(tmpRepoPath.path);
-
-      //repos.forEach(function(repo) {
-
-        // Rename _git dirs to .git
-        //fs.renameSync(path.join(tmpRepoPath.path, repo, '_git'), path.join(tmpRepoPath.path, repo, '.git'));
-      //});
-
-      console.log('done setting up tmp repos');
       done();
     });
   });
@@ -40,7 +31,7 @@ describe('GitStatistics', function() {
 
   describe('getTop10Committers', function() {
     it('should return 10 entries', function(done) {
-      var a = new GitStatistics(path.join(tmpRepoPath.path, 'node-cron_git'/*, '.git'*/));
+      var a = new GitStatistics(path.join(tmpRepoPath.path, 'node-cron_git'));
       a.getTop10Committers(function() {
         done();
       });
