@@ -1,38 +1,28 @@
-var path = require('path');
-var fs = require('fs');
 var GitStatistics = require("../classes/gitStatistics.js");
+var TestRepoHelper = require('./testRepoHelper.js');
 
 describe('GitStatistics', function() {
-
-  var tmpRepoPath;
+  
+  var self = this;
+  var testRepoPath;
+  var testRepoHelper = new TestRepoHelper();
 
   before(function(done) {
-    // Create tmp directory
-    var temporary = require('temporary');
-    tmpRepoPath = new temporary.Dir();
-    console.log(tmpRepoPath.path);
 
-    var ncp = require('ncp').ncp;
-
-    // Copy test repos to tmp dir
-    ncp(path.join(__dirname, 'repos'), tmpRepoPath.path, function(err) {
-      if (err) {
-        return console.error(err);
-      }
-
-      var repos = fs.readdirSync(tmpRepoPath.path);
+    testRepoPath = testRepoHelper.setupTestRepo('node-cron_git', function(testRepoPath) {
+      self.testRepoPath = testRepoPath;
       done();
     });
   });
 
   after(function() {
-    tmpRepoPath.rmdir();
+    testRepoHelper.cleanup();    
   })
 
   describe('getTop10Committers', function() {
     it('should return 10 entries', function(done) {
-      var a = new GitStatistics(path.join(tmpRepoPath.path, 'node-cron_git'));
-      a.getTop10Committers(function() {
+      var gitStatistics = new GitStatistics(self.testRepoPath);
+      gitStatistics.getTop10Committers(function() {
         done();
       });
     });
