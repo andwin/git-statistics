@@ -1,5 +1,6 @@
 var GitStatistics = require("../classes/gitStatistics.js");
 var TestRepoHelper = require('./testRepoHelper.js');
+var expect = require('chai').expect;
 
 describe('GitStatistics', function() {
   
