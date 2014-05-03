@@ -20,6 +20,16 @@ describe('GitStatistics', function() {
     testRepoHelper.cleanup();    
   })
 
+  describe('get10LatestCommits', function() {
+    it('should return 10 entries', function(done) {
+      var gitStatistics = new GitStatistics(self.testRepoPath);
+      gitStatistics.get10LatestCommits(function(data) {
+        expect(data).to.have.length.of(10);
+        done();
+      });
+    });
+  });
+
   describe('getTop10Committers', function() {
     it('should return 10 entries', function(done) {
       var gitStatistics = new GitStatistics(self.testRepoPath);

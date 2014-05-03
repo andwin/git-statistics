@@ -7,6 +7,15 @@ function GitStatistics(repoPath) {
   this.getAll = function(callback) {
   }
 
+  this.get10LatestCommits = function(callback) {
+    var limit = 10;
+    var command = 'git --git-dir=' + this.repoPath + ' log --pretty=format:\'{"commit": "%h","author": "%an <%ae>","date": "%ad","message": "%f"},\' -n' + limit;
+    var child = exec(command, function (err, stdout, stderr) {
+      var data = '[' + stdout.substring(0, stdout.length - 1) + ']';
+      callback(JSON.parse(data));
+    });    
+  }
+
   this.getTop10Committers = function(callback) {
     var limit = 10;
     var command = 'git --git-dir=' + this.repoPath + ' log -n100';
