@@ -17,7 +17,7 @@ describe('GitStatistics', function() {
   });
 
   after(function() {
-    testRepoHelper.cleanup();    
+    testRepoHelper.cleanup();
   })
 
   describe('get10LatestCommits', function() {
