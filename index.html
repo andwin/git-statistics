@@ -34,10 +34,8 @@
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <ul>
-                        <select class="form-control">
-                            <option>All repositories</option>
-                            <option>Linux kernel</option>
-                            <option>Gnome desktop</option>
+                        <select ng-model="currentRepo" class="form-control">
+                            <option ng-repeat="repo in statistics.repos">{{repo}}</option>
                         </select>
                     </ul>
                 </li>

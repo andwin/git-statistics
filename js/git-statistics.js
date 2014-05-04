@@ -9,4 +9,6 @@ function StatisticsCtrl($scope, $http) {
     }).success(function(data, status) {
         $scope.statistics = data;
     });
+
+    $scope.currentRepo = 'all';
 }
