@@ -8,7 +8,11 @@ function StatisticsCtrl($scope, $http) {
         url: '/test-data.json'
     }).success(function(data, status) {
         $scope.statistics = data;
+        $scope.currentRepo = 'all';
+        $scope.changeCurrentRepo();
     });
 
-    $scope.currentRepo = 'all';
+    $scope.changeCurrentRepo = function() {
+      $scope.currentRepoStatistics = $scope.statistics[$scope.currentRepo];
+    }    
 }

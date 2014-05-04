@@ -34,7 +34,7 @@
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <ul>
-                        <select ng-model="currentRepo" class="form-control">
+                        <select ng-change="changeCurrentRepo()" ng-model="currentRepo" class="form-control">
                             <option ng-repeat="repo in statistics.repos">{{repo}}</option>
                         </select>
                     </ul>
@@ -69,7 +69,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <ul class="chat">
-                                <li ng-repeat="commit in statistics.all.latestCommits" class="left clearfix">
+                                <li ng-repeat="commit in currentRepoStatistics.latestCommits" class="left clearfix">
                                     <span class="chat-img pull-left">
                                         <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
                                     </span>
