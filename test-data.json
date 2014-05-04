@@ -1,0 +1,46 @@
+{
+  "repos": ["all", "node-cron", "grunt-init"],
+  "all": {
+    "latestCommits": [
+        {"commit": "5d948d7","author": "Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Apr 23 09:20:25 2014 -0400","message": "Update-README.md"},
+        {"commit": "129c02f","author": "Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 19 15:53:02 2014 -0400","message": "Merge-pull-request-88-from-tekay-patch-1"},
+        {"commit": "293a262","author": "Mordy Tikotzky <mordytk@gmail.com>","date": "Wed Mar 19 15:25:27 2014 -0400","message": "Capitalize-Constructors"},
+        {"commit": "abe4872","author": "Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 19 09:21:58 2014 -0400","message": "Use-timezone-passed-in"},
+        {"commit": "1f71ca7","author": "Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 12 11:05:58 2014 -0400","message": "Fix-failing-test"},
+        {"commit": "e66eaec","author": "Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 12 10:35:13 2014 -0400","message": "Version-bump"},
+        {"commit": "1641174","author": "Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 12 10:32:41 2014 -0400","message": "Make-the-limits-a-little-more-clear-to-the-user"},
+        {"commit": "5db5790","author": "Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 12 10:26:22 2014 -0400","message": "Revert-Updated-to-suppoer-0-7-in-dow"},
+        {"commit": "0604293","author": "Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Mon Mar 10 09:51:53 2014 -0400","message": "Updated-to-suppoer-0-7-in-dow"},
+        {"commit": "6ebf9b2","author": "Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Mon Mar 10 09:15:21 2014 -0400","message": "Merge-pull-request-84-from-mle-ii-master"}
+    ]
+  },
+  "node-cron": {
+    "latestCommits": [
+        {"commit": "5d948d7","author": "1Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Apr 23 09:20:25 2014 -0400","message": "Update-README.md"},
+        {"commit": "129c02f","author": "1Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 19 15:53:02 2014 -0400","message": "Merge-pull-request-88-from-tekay-patch-1"},
+        {"commit": "293a262","author": "1Mordy Tikotzky <mordytk@gmail.com>","date": "Wed Mar 19 15:25:27 2014 -0400","message": "Capitalize-Constructors"},
+        {"commit": "abe4872","author": "1Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 19 09:21:58 2014 -0400","message": "Use-timezone-passed-in"},
+        {"commit": "1f71ca7","author": "1Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 12 11:05:58 2014 -0400","message": "Fix-failing-test"},
+        {"commit": "e66eaec","author": "1Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 12 10:35:13 2014 -0400","message": "Version-bump"},
+        {"commit": "1641174","author": "1Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 12 10:32:41 2014 -0400","message": "Make-the-limits-a-little-more-clear-to-the-user"},
+        {"commit": "5db5790","author": "1Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 12 10:26:22 2014 -0400","message": "Revert-Updated-to-suppoer-0-7-in-dow"},
+        {"commit": "0604293","author": "1Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Mon Mar 10 09:51:53 2014 -0400","message": "Updated-to-suppoer-0-7-in-dow"},
+        {"commit": "6ebf9b2","author": "1Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Mon Mar 10 09:15:21 2014 -0400","message": "Merge-pull-request-84-from-mle-ii-master"}
+    ]
+  },
+  "grunt-init": {
+    "latestCommits": [
+        {"commit": "5d948d7","author": "2Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Apr 23 09:20:25 2014 -0400","message": "Update-README.md"},
+        {"commit": "129c02f","author": "2Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 19 15:53:02 2014 -0400","message": "Merge-pull-request-88-from-tekay-patch-1"},
+        {"commit": "293a262","author": "2Mordy Tikotzky <mordytk@gmail.com>","date": "Wed Mar 19 15:25:27 2014 -0400","message": "Capitalize-Constructors"},
+        {"commit": "abe4872","author": "2Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 19 09:21:58 2014 -0400","message": "Use-timezone-passed-in"},
+        {"commit": "1f71ca7","author": "2Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 12 11:05:58 2014 -0400","message": "Fix-failing-test"},
+        {"commit": "e66eaec","author": "2Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 12 10:35:13 2014 -0400","message": "Version-bump"},
+        {"commit": "1641174","author": "2Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 12 10:32:41 2014 -0400","message": "Make-the-limits-a-little-more-clear-to-the-user"},
+        {"commit": "5db5790","author": "2Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Wed Mar 12 10:26:22 2014 -0400","message": "Revert-Updated-to-suppoer-0-7-in-dow"},
+        {"commit": "0604293","author": "2Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Mon Mar 10 09:51:53 2014 -0400","message": "Updated-to-suppoer-0-7-in-dow"},
+        {"commit": "6ebf9b2","author": "2Nick Campbell <nicholas.j.campbell@gmail.com>","date": "Mon Mar 10 09:15:21 2014 -0400","message": "Merge-pull-request-84-from-mle-ii-master"}
+    ]
+  }
+
+}
