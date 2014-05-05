@@ -28,6 +28,18 @@ function GitStatistics(repoPath) {
       callback();
     });
   }
+
+  this.updateRepo = function(callback) {
+    var command = 'git --git-dir=' + this.repoPath + ' pull';
+    var child = exec(command, function (err, stdout, stderr) {
+      console.log('stdout: ' + stdout);
+      console.log('stderr: ' + stderr);
+      if (err !== null) {
+        console.log('exec err: ' + err);
+      }
+      callback();
+    }); 
+  }
 }
 
 module.exports = GitStatistics;
