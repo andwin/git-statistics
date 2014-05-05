@@ -30,13 +30,9 @@ function GitStatistics(repoPath) {
   }
 
   this.updateRepo = function(callback) {
-    var command = 'git --git-dir=' + this.repoPath + ' pull';
+    var command = 'git --git-dir=' + this.repoPath + ' fetch --prune';
     var child = exec(command, function (err, stdout, stderr) {
-      console.log('stdout: ' + stdout);
-      console.log('stderr: ' + stderr);
-      if (err !== null) {
-        console.log('exec err: ' + err);
-      }
+      if(err) throw err;
       callback();
     }); 
   }
