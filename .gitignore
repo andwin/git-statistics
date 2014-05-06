@@ -1,5 +1,6 @@
 node_modules
 _app.js
 _templates.js
+data.json
 todo.txt
 tmp
