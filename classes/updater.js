@@ -25,7 +25,10 @@ function Updater() {
         });
       });
     }, function(err, results) {
-      console.log(results);
+      var data = results;
+      fs.writeFile('data.json', JSON.stringify(data, null, 2), function(err) {
+        if(err) throw err;
+      });
     });
   }
 
