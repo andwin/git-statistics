@@ -33,7 +33,8 @@ describe('GitStatistics', function() {
   describe('getTop10Committers', function() {
     it('should return 10 entries', function(done) {
       var gitStatistics = new GitStatistics(self.testRepoPath);
-      gitStatistics.getTop10Committers(function() {
+      gitStatistics.getTop10Committers(function(data) {
+        expect(data).to.have.length.of(10);
         done();
       });
     });

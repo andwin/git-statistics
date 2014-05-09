@@ -18,14 +18,25 @@ function GitStatistics(repoPath) {
 
   this.getTop10Committers = function(callback) {
     var limit = 10;
-    var command = 'git --git-dir=' + this.repoPath + ' log -n100';
+    var command = 'git --git-dir=' + this.repoPath + ' shortlog -s < /dev/tty | sort -rn | head -n' + limit;
     var child = exec(command, function (err, stdout, stderr) {
-      console.log('stdout: ' + stdout);
-      console.log('stderr: ' + stderr);
-      if (err !== null) {
-        console.log('exec err: ' + err);
-      }
-      callback();
+      if(err) throw err;
+
+      var committers = [];
+
+      var lines = stdout.split("\n");
+      lines.forEach(function(line) {
+        var regex = /(\d+)\s(.+)/
+        var result = line.match(regex);
+        if(result) {
+          var committer = {};
+          committer.numberOfCommits = result[1];
+          committer.committer = result[2];
+          committers.push(committer);
+        }
+      });
+
+      callback(committers);
     });
   }
 
