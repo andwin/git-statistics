@@ -3,7 +3,11 @@ var path = require('path');
 var async = require('async');
 var GitStatistics = require("../classes/gitStatistics.js");
 
-function Updater() {
+function Updater(pathToReposDir) {
+  this.pathToReposDir = pathToReposDir;
+
+  self = this;
+  
   this.updateData = function() {
     var data = {};
     data.repos = [];
@@ -11,7 +15,7 @@ function Updater() {
     var repos = this.getAllRepos();
     var gitStatisticsArray = new Array();
     repos.forEach(function(repoName) {
-      gitStatisticsArray.push(new GitStatistics(path.join('./repos/', repoName)));
+      gitStatisticsArray.push(new GitStatistics(path.join(self.pathToReposDir, repoName)));
     });
 
     async.map(gitStatisticsArray, function(gitStatistics, repoCallback) {
@@ -54,9 +58,9 @@ function Updater() {
 
   this.getAllRepos = function() {
     var repos = new Array();
-    var files = fs.readdirSync('./repos/');
+    var files = fs.readdirSync(self.pathToReposDir);
     files.forEach(function(file) {
-      var repoPath = path.join('./repos/', file);
+      var repoPath = path.join(self.pathToReposDir, file);
       if(fs.lstatSync(repoPath).isDirectory()) {
         repos.push(file);
       }

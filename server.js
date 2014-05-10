@@ -13,5 +13,5 @@ console.log('Listening on port 3000...');
 
 var Updater = require('./classes/updater.js');
 
-var updater = new Updater();
+var updater = new Updater('./repos/');
 updater.updateData();
