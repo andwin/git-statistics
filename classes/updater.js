@@ -14,14 +14,27 @@ function Updater() {
       gitStatisticsArray.push(new GitStatistics(repoPath));
     });
 
-    async.map(gitStatisticsArray, function(gitStatistics, callback) {
+    async.map(gitStatisticsArray, function(gitStatistics, repoCallback) {
       gitStatistics.updateRepo(function () {
-        var repoData = {};
-        repoData.name = path.basename(gitStatistics.repoPath);
+        async.series([
+          function(callback) {
+            gitStatistics.get10LatestCommits(function(latestCommits) {
+              callback(null, latestCommits);
+            });
+          },
+          function(callback) {
+            gitStatistics.getTop10Committers(function(top10Committers) {
+              callback(null, top10Committers);
+            });
+          }
+        ],
+        function(err, results) {
+          var repoData = {};
+          repoData[path.basename(gitStatistics.repoPath)] = {};
+          repoData[path.basename(gitStatistics.repoPath)]['latestCommits'] = results[0];
+          repoData[path.basename(gitStatistics.repoPath)]['top10Committers'] = results[1];
 
-        gitStatistics.get10LatestCommits(function(latestCommits) {
-          repoData.latestCommits = latestCommits;
-          callback(null, repoData);
+          repoCallback(null, repoData);
         });
       });
     }, function(err, results) {
