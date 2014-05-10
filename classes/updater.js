@@ -38,7 +38,14 @@ function Updater() {
         });
       });
     }, function(err, results) {
-      var data = results;
+      var data = {};
+      data.repos = repos;
+
+      for (var i in results) {
+        for (var c in results[i]) {
+          data[c] = results[i][c];
+        }
+      }
       fs.writeFile('data.json', JSON.stringify(data, null, 2), function(err) {
         if(err) throw err;
       });
