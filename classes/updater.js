@@ -10,8 +10,8 @@ function Updater() {
     
     var repos = this.getAllRepos();
     var gitStatisticsArray = new Array();
-    repos.forEach(function(repoPath) {
-      gitStatisticsArray.push(new GitStatistics(repoPath));
+    repos.forEach(function(repoName) {
+      gitStatisticsArray.push(new GitStatistics(path.join('./repos/', repoName)));
     });
 
     async.map(gitStatisticsArray, function(gitStatistics, repoCallback) {
@@ -58,7 +58,7 @@ function Updater() {
     files.forEach(function(file) {
       var repoPath = path.join('./repos/', file);
       if(fs.lstatSync(repoPath).isDirectory()) {
-        repos.push(repoPath);
+        repos.push(file);
       }
     });
 
