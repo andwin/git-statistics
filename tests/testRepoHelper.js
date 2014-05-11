@@ -1,5 +1,4 @@
 var path = require('path');
-var fs = require('fs');
 
 function TestRepoHelper() {
   var testRepoDir;
@@ -14,11 +13,10 @@ function TestRepoHelper() {
 
     var ncp = require('ncp').ncp;
 
-    // Copy test repos to tmp dir
+    // Copy test repo to tmp dir
     ncp(path.join(__dirname, 'repos', repoName), self.testRepoDir.path, function(err) {
-      if (err) {
-        return console.error(err);
-      }
+      if(err) throw err;
+
       callback(self.testRepoDir.path);
     });
   };
@@ -35,9 +33,8 @@ function TestRepoHelper() {
 
     // Copy all test repos to tmp dir
     ncp(path.join(__dirname, 'repos'), self.testRepoDir.path, function(err) {
-      if (err) {
-        return console.error(err);
-      }
+      if(err) throw err;
+      
       callback(self.testRepoDir.path);
     });
   }
