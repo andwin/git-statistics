@@ -14,6 +14,10 @@ describe('Updater', function() {
     });
   });
 
+  after(function() {
+    testRepoHelper.cleanup();
+  })
+
   describe('getAllRepos', function() {
     it('should return array of all repos', function() {
       var updater = new Updater(self.testRepoPath);
