@@ -14,8 +14,10 @@ describe('Updater', function() {
     });
   });
 
-  after(function() {
-    testRepoHelper.cleanup();
+  after(function(done) {
+    testRepoHelper.cleanup(function() {
+      done();
+    });
   })
 
   describe('getAllRepos', function() {
