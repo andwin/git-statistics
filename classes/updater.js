@@ -1,13 +1,12 @@
 var fs = require('fs');
 var path = require('path');
 var async = require('async');
-var GitStatistics = require("../classes/gitStatistics.js");
+var GitStatistics = require('../classes/gitStatistics.js');
 
 function Updater(pathToReposDir) {
+  self = this;
   this.pathToReposDir = pathToReposDir;
 
-  self = this;
-  
   this.updateData = function() {
     var data = {};
     data.repos = [];

@@ -1,4 +1,4 @@
-var GitStatistics = require("../classes/gitStatistics.js");
+var GitStatistics = require('../classes/gitStatistics.js');
 var TestRepoHelper = require('./testRepoHelper.js');
 var expect = require('chai').expect;
 

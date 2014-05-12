@@ -6,7 +6,6 @@ function TestRepoHelper() {
   var self = this;
 
   this.setupTestRepo = function(repoName, callback) {
-    // Copy test repo to tmp dir
     ncp(path.join(__dirname, 'repos', repoName), self.testRepoDir.path, function(err) {
       if(err) throw err;
 
@@ -15,7 +14,6 @@ function TestRepoHelper() {
   };
 
   this.setupAllTestRepos = function(callback) {
-    // Copy all test repos to tmp dir
     ncp(path.join(__dirname, 'repos'), self.testRepoDir.path, function(err) {
       if(err) throw err;
 
