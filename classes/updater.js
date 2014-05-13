@@ -8,8 +8,8 @@ function Updater(pathToReposDir) {
   this.pathToReposDir = pathToReposDir;
 
   this.updateData = function(done) {
-    var data = {};
-    data.repos = [];
+    //var data = {};
+    //data.repos = [];
     
     var repos = this.getAllRepos();
     var gitStatisticsArray = new Array();
@@ -52,7 +52,7 @@ function Updater(pathToReposDir) {
           data[c] = results[i][c];
         }
       }
-      
+
       done(data);
     });
   }
