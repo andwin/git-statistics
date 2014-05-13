@@ -18,27 +18,30 @@ function Updater(pathToReposDir) {
     });
 
     async.map(gitStatisticsArray, function(gitStatistics, repoCallback) {
-      gitStatistics.updateRepo(function () {
-        async.series([
-          function(callback) {
-            gitStatistics.get10LatestCommits(function(latestCommits) {
-              callback(null, latestCommits);
-            });
-          },
-          function(callback) {
-            gitStatistics.getTop10Committers(function(top10Committers) {
-              callback(null, top10Committers);
-            });
-          }
-        ],
-        function(err, results) {
-          var repoData = {};
-          repoData[path.basename(gitStatistics.repoPath)] = {};
-          repoData[path.basename(gitStatistics.repoPath)]['latestCommits'] = results[0];
-          repoData[path.basename(gitStatistics.repoPath)]['top10Committers'] = results[1];
+      async.series([
+        function(callback) {
+          gitStatistics.updateRepo(function() {
+            callback(null, null);
+          });
+        },
+        function(callback) {
+          gitStatistics.get10LatestCommits(function(latestCommits) {
+            callback(null, latestCommits);
+          });
+        },
+        function(callback) {
+          gitStatistics.getTop10Committers(function(top10Committers) {
+            callback(null, top10Committers);
+          });
+        }
+      ],
+      function(err, results) {
+        var repoData = {};
+        repoData[path.basename(gitStatistics.repoPath)] = {};
+        repoData[path.basename(gitStatistics.repoPath)]['latestCommits'] = results[1];
+        repoData[path.basename(gitStatistics.repoPath)]['top10Committers'] = results[2];
 
-          repoCallback(null, repoData);
-        });
+        repoCallback(null, repoData);
       });
     }, function(err, results) {
       var data = {};
