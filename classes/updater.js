@@ -7,7 +7,7 @@ function Updater(pathToReposDir) {
   self = this;
   this.pathToReposDir = pathToReposDir;
 
-  this.updateData = function() {
+  this.updateData = function(done) {
     var data = {};
     data.repos = [];
     
@@ -49,9 +49,8 @@ function Updater(pathToReposDir) {
           data[c] = results[i][c];
         }
       }
-      fs.writeFile('data.json', JSON.stringify(data, null, 2), function(err) {
-        if(err) throw err;
-      });
+      
+      done(data);
     });
   }
 
