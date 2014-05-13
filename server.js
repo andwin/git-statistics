@@ -1,3 +1,4 @@
+var fs = require('fs');
 var express = require('express');
 
 var app = express();
@@ -14,4 +15,8 @@ console.log('Listening on port 3000...');
 var Updater = require('./classes/updater.js');
 
 var updater = new Updater('./repos/');
-updater.updateData();
+updater.updateData(function(data) {
+  fs.writeFile('data.json', JSON.stringify(data, null, 2), function(err) {
+    if(err) throw err;
+  });
+});
