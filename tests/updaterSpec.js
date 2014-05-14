@@ -24,10 +24,31 @@ describe('Updater', function() {
     });
   })
 
+  describe('updateData', function() {
+    it('should return expected output', function(done) {
+
+      var updater = new Updater(self.testRepoPath);
+
+      var expectedOutput = fs.readFileSync('tests/expected-output.json') + '';
+
+      updater.updateData(function(data) {
+        data.repos.should.be.like(["grunt-init_git", "node-cron_git"]);
+
+        expect(data['grunt-init_git'].latestCommits).to.have.length.of(10);
+        expect(data['grunt-init_git'].top10Committers).to.have.length.of(10);
+
+        expect(data['node-cron_git'].latestCommits).to.have.length.of(10);
+        expect(data['node-cron_git'].top10Committers).to.have.length.of(10);
+
+        done();
+      });
+    });
+  });
+
   describe('getAllRepos', function() {
     it('should return array of all repos', function() {
       var updater = new Updater(self.testRepoPath);
-      
+
       var repos = updater.getAllRepos();
 
       expect(repos).to.have.length.of(2);
