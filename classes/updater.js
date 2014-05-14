@@ -23,21 +23,27 @@ function Updater(pathToReposDir) {
         },
         function(callback) {
           gitStatistics.get10LatestCommits(function(latestCommits) {
-            callback(null, latestCommits);
+            callback(null, { latestCommits: latestCommits });
           });
         },
         function(callback) {
           gitStatistics.getTop10Committers(function(top10Committers) {
-            callback(null, top10Committers);
+            callback(null, { top10Committers: top10Committers });
           });
         }
       ],
       function(err, results) {
         var repoData = {};
         repoData[path.basename(gitStatistics.repoPath)] = {};
-        repoData[path.basename(gitStatistics.repoPath)]['latestCommits'] = results[1];
-        repoData[path.basename(gitStatistics.repoPath)]['top10Committers'] = results[2];
 
+        for(var i in results) {
+          if(results[i] == null) {
+            continue;
+          }
+          for (var c in results[i]) {
+            repoData[path.basename(gitStatistics.repoPath)][c] = results[i][c];
+          }
+        }
         repoCallback(null, repoData);
       });
     }, function(err, results) {
