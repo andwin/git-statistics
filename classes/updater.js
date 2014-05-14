@@ -8,9 +8,6 @@ function Updater(pathToReposDir) {
   this.pathToReposDir = pathToReposDir;
 
   this.updateData = function(done) {
-    //var data = {};
-    //data.repos = [];
-    
     var repos = this.getAllRepos();
     var gitStatisticsArray = new Array();
     repos.forEach(function(repoName) {
