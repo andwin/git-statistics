@@ -35,26 +35,14 @@ function Updater(pathToReposDir) {
       function(err, results) {
         var repoData = {};
         repoData[path.basename(gitStatistics.repoPath)] = {};
+        self.formatResults(repoData[path.basename(gitStatistics.repoPath)], results);
 
-        for(var i in results) {
-          if(results[i] == null) {
-            continue;
-          }
-          for (var c in results[i]) {
-            repoData[path.basename(gitStatistics.repoPath)][c] = results[i][c];
-          }
-        }
         repoCallback(null, repoData);
       });
     }, function(err, results) {
       var data = {};
       data.repos = repos;
-
-      for (var i in results) {
-        for (var c in results[i]) {
-          data[c] = results[i][c];
-        }
-      }
+      self.formatResults(data, results);
 
       done(data);
     });
@@ -71,6 +59,14 @@ function Updater(pathToReposDir) {
     });
 
     return repos;
+  }
+
+  this.formatResults = function(data, results) {
+    for (var i in results) {
+      for (var c in results[i]) {
+        data[c] = results[i][c];
+      }
+    }
   }
 }
 
