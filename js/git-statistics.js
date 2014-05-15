@@ -5,7 +5,7 @@ function StatisticsCtrl($scope, $http) {
 
     var httpRequest = $http({
         method: 'GET',
-        url: '/test-data.json'
+        url: '/data.json'
     }).success(function(data, status) {
         $scope.statistics = data;
         $scope.currentRepo = 'all';
@@ -14,5 +14,5 @@ function StatisticsCtrl($scope, $http) {
 
     $scope.changeCurrentRepo = function() {
       $scope.currentRepoStatistics = $scope.statistics[$scope.currentRepo];
-    }    
+    }
 }
