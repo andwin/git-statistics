@@ -7,6 +7,25 @@ function Updater(pathToReposDir) {
   self = this;
   this.pathToReposDir = pathToReposDir;
 
+  this.statisticsSections = function(gitStatistics) {
+    return [
+    function(callback) {
+      gitStatistics.updateRepo(function() {
+        callback(null, null);
+      });
+    },
+    function(callback) {
+      gitStatistics.get10LatestCommits(function(latestCommits) {
+        callback(null, { latestCommits: latestCommits });
+      });
+    },
+    function(callback) {
+      gitStatistics.getTop10Committers(function(top10Committers) {
+        callback(null, { top10Committers: top10Committers });
+      });
+    }
+  ]};
+
   this.updateData = function(done) {
     var repos = this.getAllRepos();
     var gitStatisticsArray = new Array();
@@ -15,23 +34,7 @@ function Updater(pathToReposDir) {
     });
 
     async.map(gitStatisticsArray, function(gitStatistics, repoCallback) {
-      async.series([
-        function(callback) {
-          gitStatistics.updateRepo(function() {
-            callback(null, null);
-          });
-        },
-        function(callback) {
-          gitStatistics.get10LatestCommits(function(latestCommits) {
-            callback(null, { latestCommits: latestCommits });
-          });
-        },
-        function(callback) {
-          gitStatistics.getTop10Committers(function(top10Committers) {
-            callback(null, { top10Committers: top10Committers });
-          });
-        }
-      ],
+      async.series(self.statisticsSections(gitStatistics),
       function(err, results) {
         var repoData = {};
         repoData[path.basename(gitStatistics.repoPath)] = {};
