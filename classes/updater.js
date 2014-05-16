@@ -73,6 +73,40 @@ function Updater(pathToReposDir) {
       }
     }
   }
+
+  this.calculateCombinedStatistics = function(data, callback) {
+    var combinedStatistics = {};
+
+    // latestCommits
+    var allCommits = [];
+    for(var i in data) {
+      if(data[i] == 'repos') {
+        continue;
+      }
+
+      for(var c in data[i].latestCommits) {
+        allCommits.push(data[i].latestCommits[c]);
+      }
+    }
+    allCommits.sort(function(a,b) { return new Date(a.date) - new Date(b.data) } );
+    combinedStatistics.latestCommits = allCommits.slice(0, 10);
+
+    // top10Committers
+    var allCommitters = [];
+    for(var i in data) {
+      if(data[i] == 'repos') {
+        continue;
+      }
+
+      for(var c in data[i].top10Committers) {
+        allCommitters.push(data[i].top10Committers[c]);
+      }
+    }
+    allCommitters.sort(function(a,b) { return parseInt(a.numberOfCommits) - parseInt(b.numberOfCommits) } );
+    combinedStatistics.top10Committers = allCommits.slice(0, 10);
+
+    callback({all: combinedStatistics});
+  }
 }
 
 module.exports = Updater;

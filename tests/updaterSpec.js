@@ -56,4 +56,22 @@ describe('Updater', function() {
       expect(repos).to.contain('node-cron_git');
     });
   });
+
+  describe('calculateCombinedStatistics', function() {
+    it('should return combined statistics for all repos', function(done) {
+
+        var updater = new Updater(self.testRepoPath);
+        updater.updateData(function(data) {
+
+          updater.calculateCombinedStatistics(data, function(combinedStatistics) {
+            console.log(combinedStatistics);
+
+            expect(combinedStatistics.all.latestCommits).to.have.length.of(10);
+            expect(combinedStatistics.all.top10Committers).to.have.length.of(10);
+
+            done();
+          });
+        });
+    });
+  });
 });
