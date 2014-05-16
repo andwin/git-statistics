@@ -34,14 +34,16 @@ function Updater(pathToReposDir) {
     });
 
     async.map(gitStatisticsArray, function(gitStatistics, repoCallback) {
-      async.series(self.statisticsSections(gitStatistics),
-      function(err, results) {
-        var repoData = {};
-        repoData[path.basename(gitStatistics.repoPath)] = {};
-        self.formatResults(repoData[path.basename(gitStatistics.repoPath)], results);
+      async.series(
+        self.statisticsSections(gitStatistics),
+        function(err, results) {
+          var repoData = {};
+          repoData[path.basename(gitStatistics.repoPath)] = {};
+          self.formatResults(repoData[path.basename(gitStatistics.repoPath)], results);
 
-        repoCallback(null, repoData);
-      });
+          repoCallback(null, repoData);
+        }
+      );
     }, function(err, results) {
       var data = {};
       data.repos = repos;
