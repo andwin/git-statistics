@@ -49,7 +49,11 @@ function Updater(pathToReposDir) {
       data.repos = repos;
       self.formatResults(data, results);
 
-      done(data);
+      self.calculateCombinedStatistics(data, function(combinedStatistics) {
+        self.formatResults(data, [combinedStatistics]);
+        data.repos.push('all');
+        done(data);
+      });
     });
   }
 
