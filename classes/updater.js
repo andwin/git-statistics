@@ -82,34 +82,30 @@ function Updater(pathToReposDir) {
     var combinedStatistics = {};
 
     // latestCommits
-    var allCommits = [];
-    for(var i in data) {
-      if(data[i] == 'repos') {
-        continue;
-      }
-
-      for(var c in data[i].latestCommits) {
-        allCommits.push(data[i].latestCommits[c]);
-      }
-    }
+    var allCommits = self.getCombinedStatisticsSection(data, 'latestCommits');
     allCommits.sort(function(a,b) { return new Date(a.date) - new Date(b.data) } );
     combinedStatistics.latestCommits = allCommits.slice(0, 10);
 
     // top10Committers
-    var allCommitters = [];
+    var allCommitters = self.getCombinedStatisticsSection(data, 'top10Committers');
+    allCommitters.sort(function(a,b) { return parseInt(a.numberOfCommits) - parseInt(b.numberOfCommits) } );
+    combinedStatistics.top10Committers = allCommits.slice(0, 10);
+
+    callback({all: combinedStatistics});
+  }
+
+  this.getCombinedStatisticsSection = function(data, section) {
+    var items = [];
     for(var i in data) {
       if(data[i] == 'repos') {
         continue;
       }
 
-      for(var c in data[i].top10Committers) {
-        allCommitters.push(data[i].top10Committers[c]);
+      for(var c in data[i][section]) {
+        items.push(data[i][section][c]);
       }
     }
-    allCommitters.sort(function(a,b) { return parseInt(a.numberOfCommits) - parseInt(b.numberOfCommits) } );
-    combinedStatistics.top10Committers = allCommits.slice(0, 10);
-
-    callback({all: combinedStatistics});
+    return items;
   }
 }
 
