@@ -89,7 +89,7 @@ function Updater(pathToReposDir) {
     // top10Committers
     var allCommitters = self.getCombinedStatisticsSection(data, 'top10Committers');
     allCommitters.sort(function(a,b) { return parseInt(a.numberOfCommits) - parseInt(b.numberOfCommits) } );
-    combinedStatistics.top10Committers = allCommits.slice(0, 10);
+    combinedStatistics.top10Committers = allCommitters.slice(0, 10);
 
     callback({all: combinedStatistics});
   }
