@@ -102,7 +102,7 @@ function Updater(pathToReposDir) {
       }
 
       for(var c in data[i][section]) {
-        var item = data[i][section][c];
+        var item = JSON.parse(JSON.stringify(data[i][section][c]));
         item.repo = i;
         items.push(item);
       }
