@@ -66,7 +66,7 @@
                             <i class="fa fa-comments fa-fw"></i>
                             Commits
                         </div>
-                        <!-- /.panel-heading -->
+
                         <div class="panel-body">
                             <ul class="chat">
                                 <li ng-repeat="commit in currentRepoStatistics.latestCommits" class="left clearfix">
@@ -75,7 +75,7 @@
                                     </span>
                                     <div class="chat-body clearfix">
                                         <div class="header">
-                                            <strong class="primary-font">{{commit.author}}</strong> 
+                                            <strong class="primary-font">{{commit.author}}</strong>
                                             <small class="pull-right text-muted">
                                                 <i class="fa fa-clock-o fa-fw"></i> {{commit.date}}
                                             </small>
@@ -91,16 +91,15 @@
                             </ul>
                         </div>
                     </div>
-
                 </div>
-                <!-- /.col-lg-8 -->
+
                 <div class="col-lg-4">
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-users fa-fw"></i> Top committers last 30 days
                         </div>
-                        <!-- /.panel-heading -->
+
                         <div class="panel-body">
                             <div class="list-group">
                                 <span ng-repeat="committer in currentRepoStatistics.top10Committers" class="list-group-item">
@@ -187,14 +186,10 @@
                     </div>
 
                 </div>
-                <!-- /.col-lg-4 -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /#page-wrapper -->
       </div>
     </div>
-    <!-- /#wrapper -->
 
     <footer class="bs-docs-footer" role="contentinfo">
       <div class="container">
@@ -221,12 +216,10 @@
       </div>
     </footer>
 
-    <!-- Core Scripts - Include with every page -->
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
 
-    <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular-resource.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular-route.min.js"></script>
@@ -234,16 +227,11 @@
     <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
     <script src="js/git-statistics.js"></script>
 
-    <!-- Page-Level Plugin Scripts - Dashboard -->
     <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
     <script src="js/plugins/morris/morris.js"></script>
 
-    <!-- SB Admin Scripts - Include with every page -->
     <script src="js/sb-admin.js"></script>
 
-    <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
     <script src="js/demo/dashboard-demo.js"></script>
-
 </body>
-
 </html>
