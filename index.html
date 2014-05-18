@@ -103,13 +103,9 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="list-group">
-                                <span href="#" class="list-group-item">
-                                    <i class="fa fa-user fa-fw"></i> User1
-                                    <span class="pull-right text-muted small"><em>244 commits</em></span>
-                                </span>
-                                <span class="list-group-item">
-                                    <i class="fa fa-user fa-fw"></i> User2
-                                    <span class="pull-right text-muted small"><em>240 commits</em></span>
+                                <span ng-repeat="committer in currentRepoStatistics.top10Committers" class="list-group-item">
+                                    <i class="fa fa-user fa-fw"></i> {{committer.committer}}
+                                    <span class="pull-right text-muted small"><em>{{committer.numberOfCommits}} commits {{committer.repo}}</em></span>
                                 </span>
                             </div>
                         </div>
