@@ -1,5 +1,7 @@
-var sys = require('sys')
-var exec = require('child_process').exec;
+'use strict'
+const
+  sys = require('sys'),
+  exec = require('child_process').exec;
 
 function GitStatistics(repoPath) {
   this.repoPath = repoPath;

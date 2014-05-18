@@ -1,7 +1,8 @@
-var fs = require('fs');
-var express = require('express');
-
-var app = express();
+'use strict'
+const
+  fs = require('fs'),
+  express = require('express'),
+  app = express();
 
 app.configure(function () {
     app.use(express.bodyParser());
