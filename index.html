@@ -127,19 +127,11 @@
                                     <span class="pull-right text-muted small"><em>24</em></span>
                                 </span>
                             </div>
-                            <h4>Newest tags</h4>
+                            <h4>Most recent tags</h4>
                             <div class="list-group">
-                                <span href="#" class="list-group-item">
-                                    <i class="fa fa-user fa-fw"></i> v1.0.3
+                                <span ng-repeat="tag in currentRepoStatistics.mostRecentTags" class="list-group-item">
+                                    <i class="fa fa-user fa-fw"></i> {{tag}}
                                     <span class="pull-right text-muted small"><em>4 min ago</em></span>
-                                </span>
-                                <span class="list-group-item">
-                                    <i class="fa fa-user fa-fw"></i> v1.0.2
-                                    <span class="pull-right text-muted small"><em>6 hours ago</em></span>
-                                </span>
-                                <span class="list-group-item">
-                                    <i class="fa fa-user fa-fw"></i> v1.0.1
-                                    <span class="pull-right text-muted small"><em>6 hours ago</em></span>
                                 </span>
                             </div>
                             <h4>Newest brancehs</h4>
