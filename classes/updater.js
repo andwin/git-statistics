@@ -25,6 +25,11 @@ function Updater(pathToReposDir) {
       gitStatistics.getTop10Committers(function(top10Committers) {
         callback(null, { top10Committers: top10Committers });
       });
+    },
+    function(callback) {
+      gitStatistics.getMostRecentTags(function(mostRecentTags) {
+        callback(null, { mostRecentTags: mostRecentTags });
+      });
     }
   ]};
 
@@ -92,6 +97,10 @@ function Updater(pathToReposDir) {
     var allCommitters = self.getCombinedStatisticsSection(data, 'top10Committers');
     allCommitters.sort(function(a,b) { return parseInt(b.numberOfCommits) - parseInt(a.numberOfCommits) } );
     combinedStatistics.top10Committers = allCommitters.slice(0, 10);
+
+    // mostRecentTags
+    var allTags = self.getCombinedStatisticsSection(data, 'mostRecentTags');
+    combinedStatistics.mostRecentTags = allTags.slice(0, 10);
 
     callback({all: combinedStatistics});
   }
