@@ -29,10 +29,8 @@ describe('Updater', function() {
 
       var updater = new Updater(self.testRepoPath);
 
-      var expectedOutput = fs.readFileSync('tests/expected-output.json') + '';
-
       updater.updateData(function(data) {
-        data.repos.should.be.like(["grunt-init_git", "node-cron_git"]);
+        data.repos.should.be.like(["grunt-init_git", "node-cron_git", "all"]);
 
         expect(data['grunt-init_git'].latestCommits).to.have.length.of(10);
         expect(data['grunt-init_git'].top10Committers).to.have.length.of(10);
@@ -66,7 +64,6 @@ describe('Updater', function() {
         updater.updateData(function(data) {
 
           updater.calculateCombinedStatistics(data, function(combinedStatistics) {
-            console.log(combinedStatistics);
 
             expect(combinedStatistics.all.latestCommits).to.have.length.of(10);
             expect(combinedStatistics.all.top10Committers).to.have.length.of(10);
