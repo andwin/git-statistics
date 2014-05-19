@@ -15,7 +15,7 @@ function GitStatistics(repoPath) {
     var child = exec(command, function (err, stdout, stderr) {
       var data = '[' + stdout.substring(0, stdout.length - 1) + ']';
       callback(JSON.parse(data));
-    });    
+    });
   }
 
   this.getTop10Committers = function(callback) {
@@ -46,8 +46,9 @@ function GitStatistics(repoPath) {
     var command = 'git --git-dir=' + this.repoPath + ' fetch --prune';
     var child = exec(command, function (err, stdout, stderr) {
       if(err) throw err;
+
       callback();
-    }); 
+    });
   }
 }
 
