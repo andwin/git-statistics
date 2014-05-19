@@ -1,9 +1,12 @@
+var chai = require('chai');
+chai.use(require('chai-fuzzy'));
+var should = chai.should();
+var expect = chai.expect;
 var GitStatistics = require('../classes/gitStatistics.js');
 var TestRepoHelper = require('./testRepoHelper.js');
-var expect = require('chai').expect;
 
 describe('GitStatistics', function() {
-  
+
   var self = this;
   var testRepoPath;
   var testRepoHelper = new TestRepoHelper();
@@ -37,6 +40,16 @@ describe('GitStatistics', function() {
       var gitStatistics = new GitStatistics(self.testRepoPath);
       gitStatistics.getTop10Committers(function(data) {
         expect(data).to.have.length.of(10);
+        done();
+      });
+    });
+  });
+
+  describe('getMostRecentTags', function() {
+    it('should return 5 entries', function(done) {
+      var gitStatistics = new GitStatistics(self.testRepoPath);
+      gitStatistics.getMostRecentTags(function(data) {
+        data.should.be.like(['v1.0.4-5-g5d948d7']);
         done();
       });
     });

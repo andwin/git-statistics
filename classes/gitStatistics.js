@@ -42,6 +42,20 @@ function GitStatistics(repoPath) {
     });
   }
 
+  this.getMostRecentTags = function(callback) {
+    let
+      limit = 5,
+      command = 'git --git-dir=' + this.repoPath + ' describe --tags `git rev-list --tags --max-count=' + limit + '`';
+
+    let child = exec(command, function (err, stdout, stderr) {
+      if(err) throw err;
+
+      let tags = stdout.trim().split("\n");
+
+      callback(tags);
+    });
+  }
+
   this.updateRepo = function(callback) {
     var command = 'git --git-dir=' + this.repoPath + ' fetch --prune';
     var child = exec(command, function (err, stdout, stderr) {
