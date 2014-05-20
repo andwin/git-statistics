@@ -100,7 +100,8 @@ function Updater(pathToReposDir) {
 
     // mostRecentTags
     var allTags = self.getCombinedStatisticsSection(data, 'mostRecentTags');
-    combinedStatistics.mostRecentTags = allTags.slice(0, 10);
+    allTags.sort(function(a,b) { return new Date(a.date) - new Date(b.data) } );
+    combinedStatistics.mostRecentTags = allTags.slice(0, 5);
 
     callback({all: combinedStatistics});
   }
