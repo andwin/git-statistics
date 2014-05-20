@@ -53,6 +53,10 @@ function GitStatistics(repoPath) {
       let tags = [];
       let lines = stdout.trim().split("\n");
       lines.forEach(function(line) {
+        if(line.trim() == '') {
+          return;
+        }
+
         var result = line.split("|");
         if(result) {
           let tag = {};
