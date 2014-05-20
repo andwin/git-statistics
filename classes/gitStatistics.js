@@ -45,12 +45,23 @@ function GitStatistics(repoPath) {
   this.getMostRecentTags = function(callback) {
     let
       limit = 5,
-      command = 'git --git-dir=' + this.repoPath + ' describe --tags `git rev-list --tags --max-count=' + limit + '`';
+      command = 'git --git-dir=' + this.repoPath + ' for-each-ref --format="%(refname:short) | %(committerdate) | %(subject)" refs/tags --sort=-committerdate --count=5';
 
     let child = exec(command, function (err, stdout, stderr) {
       if(err) throw err;
 
-      let tags = stdout.trim().split("\n");
+      let tags = [];
+      let lines = stdout.trim().split("\n");
+      lines.forEach(function(line) {
+        var result = line.split("|");
+        if(result) {
+          let tag = {};
+          tag.name = result[0].trim();
+          tag.date = result[1].trim();
+          tag.message = result[2].trim();
+          tags.push(tag);
+        }
+      });
 
       callback(tags);
     });
