@@ -130,8 +130,8 @@
                             <h4>Most recent tags</h4>
                             <div class="list-group">
                                 <span ng-repeat="tag in currentRepoStatistics.mostRecentTags" class="list-group-item">
-                                    <i class="fa fa-user fa-fw"></i> {{tag}}
-                                    <span class="pull-right text-muted small"><em>4 min ago</em></span>
+                                    <i class="fa fa-user fa-fw"></i> {{tag.name}}
+                                    <span class="pull-right text-muted small"><em>{{tag.date}} {{tag.repo}}</em></span>
                                 </span>
                             </div>
                             <h4>Newest brancehs</h4>
