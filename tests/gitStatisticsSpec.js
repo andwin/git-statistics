@@ -80,4 +80,30 @@ describe('GitStatistics', function() {
       });
     });
   });
+
+  describe('getMostRecentBranches', function() {
+    it('should return the five most recent branches', function(done) {
+      var gitStatistics = new GitStatistics(self.testRepoPath);
+      gitStatistics.getMostRecentBranches(function(data) {
+        data.should.be.like(
+          [{
+            name: 'master',
+            date: 'Wed Apr 23 09:20:25 2014 -0400',
+            authorName: 'Nick Campbell',
+            authorEmail: '<nicholas.j.campbell@gmail.com>',
+            message: 'Update README.md'
+          },
+          {
+            name: 'GH-10',
+            date: 'Sun Sep 25 13:15:53 2011 -0400',
+            authorName: 'Nick Campbell',
+            authorEmail: '<nicholas.j.campbell@gmail.com>',
+            message: 'Updated tests to support the +1 second in timing. Also, updated code to support the existing onComplete API.'
+          }]
+        );
+        done();
+      });
+    });
+  });
+
 });

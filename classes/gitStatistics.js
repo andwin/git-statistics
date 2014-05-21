@@ -71,6 +71,37 @@ function GitStatistics(repoPath) {
     });
   }
 
+  this.getMostRecentBranches = function(callback) {
+    let
+      limit = 5,
+      command = 'git --git-dir=' + this.repoPath + ' for-each-ref --sort=-committerdate refs/heads/ --format="%(refname:short) | %(committerdate) | %(authorname) | %(authoremail) | %(subject)" --count=' + limit;
+
+    let child = exec(command, function (err, stdout, stderr) {
+      if(err) throw err;
+
+      let branches = [];
+      let lines = stdout.trim().split("\n");
+      lines.forEach(function(line) {
+        if(line.trim() == '') {
+          return;
+        }
+
+        var result = line.split("|");
+        if(result) {
+          let branch = {};
+          branch.name = result[0].trim();
+          branch.date = result[1].trim();
+          branch.authorName = result[2].trim();
+          branch.authorEmail = result[3].trim();
+          branch.message = result[4].trim();
+          branches.push(branch);
+        }
+      });
+
+      callback(branches);
+    });
+  }
+
   this.updateRepo = function(callback) {
     var command = 'git --git-dir=' + this.repoPath + ' fetch --prune';
     var child = exec(command, function (err, stdout, stderr) {
