@@ -30,6 +30,11 @@ function Updater(pathToReposDir) {
       gitStatistics.getMostRecentTags(function(mostRecentTags) {
         callback(null, { mostRecentTags: mostRecentTags });
       });
+    },
+    function(callback) {
+      gitStatistics.getMostRecentBranches(function(mostRecentBranches) {
+        callback(null, { mostRecentBranches: mostRecentBranches });
+      });
     }
   ]};
 
@@ -102,6 +107,11 @@ function Updater(pathToReposDir) {
     var allTags = self.getCombinedStatisticsSection(data, 'mostRecentTags');
     allTags.sort(function(a,b) { return new Date(a.date) - new Date(b.data) } );
     combinedStatistics.mostRecentTags = allTags.slice(0, 5);
+
+    // mostRecentBranches
+    var allBranches = self.getCombinedStatisticsSection(data, 'mostRecentBranches');
+    allBranches.sort(function(a,b) { return new Date(a.date) - new Date(b.data) } );
+    combinedStatistics.mostRecentBranches = allBranches.slice(0, 5);
 
     callback({all: combinedStatistics});
   }

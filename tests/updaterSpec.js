@@ -35,10 +35,12 @@ describe('Updater', function() {
         expect(data['grunt-init_git'].latestCommits).to.have.length.of(10);
         expect(data['grunt-init_git'].top10Committers).to.have.length.of(10);
         expect(data['grunt-init_git'].mostRecentTags).to.have.length.of(2);
+        expect(data['grunt-init_git'].mostRecentBranches).to.have.length.of(2);
 
         expect(data['node-cron_git'].latestCommits).to.have.length.of(10);
         expect(data['node-cron_git'].top10Committers).to.have.length.of(10);
         expect(data['node-cron_git'].mostRecentTags).to.have.length.of(5);
+        expect(data['node-cron_git'].mostRecentBranches).to.have.length.of(2);
 
         done();
       });
@@ -64,6 +66,7 @@ describe('Updater', function() {
         expect(data.all.latestCommits).to.have.length.of(10);
         expect(data.all.top10Committers).to.have.length.of(10);
         expect(data.all.mostRecentTags).to.have.length.of(5);
+        expect(data.all.mostRecentBranches).to.have.length.of(4);
 
         done();
       });
