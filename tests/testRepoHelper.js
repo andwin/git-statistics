@@ -24,12 +24,10 @@ function TestRepoHelper() {
   this.createTmpDir = function() {
     var temporary = require('temporary');
     self.testRepoDir = new temporary.Dir();
-    console.log(self.testRepoDir.path);
-  }  
+  }
 
   this.cleanup = function(callback) {
     rmdir = require('rimraf');
-    console.log("deleting " + self.testRepoDir.path);
     rmdir(self.testRepoDir.path, function(err) {
       callback();
     });
