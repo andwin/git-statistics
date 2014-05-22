@@ -61,15 +61,11 @@ describe('Updater', function() {
     it('should return combined statistics for all repos', function(done) {
       var updater = new Updater(self.testRepoPath);
       updater.updateData(function(data) {
+        expect(data.all.latestCommits).to.have.length.of(10);
+        expect(data.all.top10Committers).to.have.length.of(10);
+        expect(data.all.mostRecentTags).to.have.length.of(5);
 
-        updater.calculateCombinedStatistics(data, function(combinedStatistics) {
-
-          expect(combinedStatistics.all.latestCommits).to.have.length.of(10);
-          expect(combinedStatistics.all.top10Committers).to.have.length.of(10);
-          expect(combinedStatistics.all.mostRecentTags).to.have.length.of(5);
-
-          done();
-        });
+        done();
       });
     });
   });
