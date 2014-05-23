@@ -134,19 +134,11 @@
                                     <span class="pull-right text-muted small"><em>{{tag.date}} {{tag.repo}}</em></span>
                                 </span>
                             </div>
-                            <h4>Newest brancehs</h4>
+                            <h4>Most recent brancehs</h4>
                             <div class="list-group">
-                                <span href="#" class="list-group-item">
-                                    <i class="fa fa-user fa-fw"></i> bugfix
-                                    <span class="pull-right text-muted small"><em>4 min ago</em></span>
-                                </span>
-                                <span class="list-group-item">
-                                    <i class="fa fa-user fa-fw"></i> new-great-feature
-                                    <span class="pull-right text-muted small"><em>6 hours ago</em></span>
-                                </span>
-                                <span class="list-group-item">
-                                    <i class="fa fa-user fa-fw"></i> new-great-feature
-                                    <span class="pull-right text-muted small"><em>6 hours ago</em></span>
+                                <span  ng-repeat="branch in currentRepoStatistics.mostRecentBranches" class="list-group-item">
+                                    <i class="fa fa-user fa-fw"></i> {{branch.name}}
+                                    <span class="pull-right text-muted small"><em>{{branch.date}} {{branch.repo}}</em></span>
                                 </span>
                             </div>
                             <h4>Oldest brancehs</h4>
