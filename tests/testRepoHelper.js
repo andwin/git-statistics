@@ -1,41 +1,35 @@
 var path = require('path');
 var ncp = require('ncp').ncp;
+var temporary = require('temporary');
 
 function TestRepoHelper() {
-  var testRepoDir;
+  this.testRepoDir = new temporary.Dir();
+}
+
+TestRepoHelper.prototype.setupTestRepo = function(repoName, callback) {
   var self = this;
+  ncp(path.join(__dirname, 'repos', repoName), self.testRepoDir.path, function(err) {
+    if(err) throw err;
 
-  this.setupTestRepo = function(repoName, callback) {
-    ncp(path.join(__dirname, 'repos', repoName), self.testRepoDir.path, function(err) {
-      if(err) throw err;
+    callback(self.testRepoDir.path);
+  });
+};
 
-      callback(self.testRepoDir.path);
-    });
-  };
+TestRepoHelper.prototype.setupAllTestRepos = function(callback) {
+  var self = this;
+  ncp(path.join(__dirname, 'repos'), self.testRepoDir.path, function(err) {
+    if(err) throw err;
 
-  this.setupAllTestRepos = function(callback) {
-    ncp(path.join(__dirname, 'repos'), self.testRepoDir.path, function(err) {
-      if(err) throw err;
+    callback(self.testRepoDir.path);
+  });
+}
 
-      callback(self.testRepoDir.path);
-    });
-  }
-
-  this.createTmpDir = function() {
-    var temporary = require('temporary');
-    self.testRepoDir = new temporary.Dir();
-  }
-
-  this.cleanup = function(callback) {
-    rmdir = require('rimraf');
-    rmdir(self.testRepoDir.path, function(err) {
-      callback();
-    });
-  }
-
-  var __construct = function() {
-    self.createTmpDir();
-  }()
+TestRepoHelper.prototype.cleanup = function(callback) {
+  var self = this;
+  rmdir = require('rimraf');
+  rmdir(self.testRepoDir.path, function(err) {
+    callback();
+  });
 }
 
 module.exports = TestRepoHelper;
