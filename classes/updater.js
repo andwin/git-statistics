@@ -40,9 +40,9 @@ Updater.prototype.statisticsSections = function(gitStatistics) {
 };
 
 Updater.prototype.updateData = function(done) {
-  var self = this;
-  var repos = this.getAllRepos();
-  var gitStatisticsArray = new Array();
+  let self = this;
+  let repos = this.getAllRepos();
+  let gitStatisticsArray = new Array();
 
   repos.forEach(function(repoName) {
     gitStatisticsArray.push(new GitStatistics(path.join(self.pathToReposDir, repoName)));
@@ -52,7 +52,7 @@ Updater.prototype.updateData = function(done) {
     async.series(
       self.statisticsSections(gitStatistics),
       function(err, results) {
-        var repoData = {};
+        let repoData = {};
         repoData[path.basename(gitStatistics.repoPath)] = {};
         self.formatResults(repoData[path.basename(gitStatistics.repoPath)], results);
 
@@ -60,7 +60,7 @@ Updater.prototype.updateData = function(done) {
       }
     );
   }, function(err, results) {
-    var data = {};
+    let data = {};
     data.repos = repos;
     self.formatResults(data, results);
 
@@ -73,11 +73,11 @@ Updater.prototype.updateData = function(done) {
 }
 
 Updater.prototype.getAllRepos = function() {
-  var self = this;
-  var repos = new Array();
-  var files = fs.readdirSync(this.pathToReposDir);
+  let self = this;
+  let repos = new Array();
+  let files = fs.readdirSync(this.pathToReposDir);
   files.forEach(function(file) {
-    var repoPath = path.join(self.pathToReposDir, file);
+    let repoPath = path.join(self.pathToReposDir, file);
     if(fs.lstatSync(repoPath).isDirectory()) {
       repos.push(file);
     }
@@ -87,33 +87,33 @@ Updater.prototype.getAllRepos = function() {
 }
 
 Updater.prototype.formatResults = function(data, results) {
-  for (var i in results) {
-    for (var c in results[i]) {
+  for (let i in results) {
+    for (let c in results[i]) {
       data[c] = results[i][c];
     }
   }
 }
 
 Updater.prototype.calculateCombinedStatistics = function(data, callback) {
-  var combinedStatistics = {};
+  let combinedStatistics = {};
 
   // latestCommits
-  var allCommits = this.getCombinedStatisticsSection(data, 'latestCommits');
+  let allCommits = this.getCombinedStatisticsSection(data, 'latestCommits');
   allCommits.sort(function(a,b) { return new Date(a.date) - new Date(b.data) } );
   combinedStatistics.latestCommits = allCommits.slice(0, 10);
 
   // top10Committers
-  var allCommitters = this.getCombinedStatisticsSection(data, 'top10Committers');
+  let allCommitters = this.getCombinedStatisticsSection(data, 'top10Committers');
   allCommitters.sort(function(a,b) { return parseInt(b.numberOfCommits) - parseInt(a.numberOfCommits) } );
   combinedStatistics.top10Committers = allCommitters.slice(0, 10);
 
   // mostRecentTags
-  var allTags = this.getCombinedStatisticsSection(data, 'mostRecentTags');
+  let allTags = this.getCombinedStatisticsSection(data, 'mostRecentTags');
   allTags.sort(function(a,b) { return new Date(a.date) - new Date(b.data) } );
   combinedStatistics.mostRecentTags = allTags.slice(0, 5);
 
   // mostRecentBranches
-  var allBranches = this.getCombinedStatisticsSection(data, 'mostRecentBranches');
+  let allBranches = this.getCombinedStatisticsSection(data, 'mostRecentBranches');
   allBranches.sort(function(a,b) { return new Date(a.date) - new Date(b.data) } );
   combinedStatistics.mostRecentBranches = allBranches.slice(0, 5);
 
@@ -121,14 +121,14 @@ Updater.prototype.calculateCombinedStatistics = function(data, callback) {
 }
 
 Updater.prototype.getCombinedStatisticsSection = function(data, section) {
-  var items = [];
-  for(var i in data) {
+  let items = [];
+  for(let i in data) {
     if(data[i] == 'repos') {
       continue;
     }
 
-    for(var c in data[i][section]) {
-      var item = JSON.parse(JSON.stringify(data[i][section][c]));
+    for(let c in data[i][section]) {
+      let item = JSON.parse(JSON.stringify(data[i][section][c]));
       item.repo = i;
       items.push(item);
     }
