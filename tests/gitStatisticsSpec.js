@@ -9,14 +9,13 @@ const
 chai.use(require('chai-fuzzy'));
 
 describe('GitStatistics', function() {
-
-  var self = this;
-  var testRepoPath;
-  var testRepoHelper = new TestRepoHelper();
+  let testRepoPath;
+  let testRepoHelper = new TestRepoHelper();
 
   before(function(done) {
+    let self = this;
 
-    testRepoPath = testRepoHelper.setupTestRepo('node-cron_git', function(testRepoPath) {
+    testRepoHelper.setupTestRepo('node-cron_git', function(testRepoPath) {
       self.testRepoPath = testRepoPath;
       done();
     });
@@ -30,7 +29,7 @@ describe('GitStatistics', function() {
 
   describe('get10LatestCommits', function() {
     it('should return 10 entries', function(done) {
-      var gitStatistics = new GitStatistics(self.testRepoPath);
+      let gitStatistics = new GitStatistics(this.testRepoPath);
       gitStatistics.get10LatestCommits(function(data) {
         expect(data).to.have.length.of(10);
         done();
@@ -40,7 +39,7 @@ describe('GitStatistics', function() {
 
   describe('getTop10Committers', function() {
     it('should return 10 entries', function(done) {
-      var gitStatistics = new GitStatistics(self.testRepoPath);
+      let gitStatistics = new GitStatistics(this.testRepoPath);
       gitStatistics.getTop10Committers(function(data) {
         expect(data).to.have.length.of(10);
         done();
@@ -50,7 +49,7 @@ describe('GitStatistics', function() {
 
   describe('getMostRecentTags', function() {
     it('should return 5 entries', function(done) {
-      var gitStatistics = new GitStatistics(self.testRepoPath);
+      let gitStatistics = new GitStatistics(this.testRepoPath);
       gitStatistics.getMostRecentTags(function(data) {
         data.should.be.like(
           [{
@@ -86,7 +85,7 @@ describe('GitStatistics', function() {
 
   describe('getMostRecentBranches', function() {
     it('should return the five most recent branches', function(done) {
-      var gitStatistics = new GitStatistics(self.testRepoPath);
+      let gitStatistics = new GitStatistics(this.testRepoPath);
       gitStatistics.getMostRecentBranches(function(data) {
         data.should.be.like(
           [{
