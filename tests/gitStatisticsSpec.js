@@ -1,9 +1,12 @@
-var chai = require('chai');
+'use strict'
+const
+  chai = require('chai'),
+  should = chai.should(),
+  expect = chai.expect,
+  GitStatistics = require('../classes/gitStatistics.js'),
+  TestRepoHelper = require('./testRepoHelper.js');
+
 chai.use(require('chai-fuzzy'));
-var should = chai.should();
-var expect = chai.expect;
-var GitStatistics = require('../classes/gitStatistics.js');
-var TestRepoHelper = require('./testRepoHelper.js');
 
 describe('GitStatistics', function() {
 
