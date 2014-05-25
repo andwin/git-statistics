@@ -8,28 +8,28 @@ function GitStatistics(repoPath) {
 };
 
 GitStatistics.prototype.get10LatestCommits = function(callback) {
-  var limit = 10;
-  var command = 'git --git-dir=' + this.repoPath + ' log --pretty=format:\'{"commit": "%h","author": "%an <%ae>","date": "%ad","message": "%f"},\' -n' + limit;
-  var child = exec(command, function (err, stdout, stderr) {
-    var data = '[' + stdout.substring(0, stdout.length - 1) + ']';
+  let limit = 10;
+  let command = 'git --git-dir=' + this.repoPath + ' log --pretty=format:\'{"commit": "%h","author": "%an <%ae>","date": "%ad","message": "%f"},\' -n' + limit;
+  let child = exec(command, function (err, stdout, stderr) {
+    let data = '[' + stdout.substring(0, stdout.length - 1) + ']';
     callback(JSON.parse(data));
   });
 };
 
 GitStatistics.prototype.getTop10Committers = function(callback) {
-  var limit = 10;
-  var command = 'git --git-dir=' + this.repoPath + ' shortlog -s < /dev/tty | sort -rn | head -n' + limit;
-  var child = exec(command, function (err, stdout, stderr) {
+  let limit = 10;
+  let command = 'git --git-dir=' + this.repoPath + ' shortlog -s < /dev/tty | sort -rn | head -n' + limit;
+  let child = exec(command, function (err, stdout, stderr) {
     if(err) throw err;
 
-    var committers = [];
+    let committers = [];
 
-    var lines = stdout.split("\n");
+    let lines = stdout.split("\n");
     lines.forEach(function(line) {
-      var regex = /(\d+)\s(.+)/
-      var result = line.match(regex);
+      let regex = /(\d+)\s(.+)/
+      let result = line.match(regex);
       if(result) {
-        var committer = {};
+        let committer = {};
         committer.numberOfCommits = result[1];
         committer.committer = result[2];
         committers.push(committer);
@@ -55,7 +55,7 @@ GitStatistics.prototype.getMostRecentTags = function(callback) {
         return;
       }
 
-      var result = line.split("|");
+      let result = line.split("|");
       if(result) {
         let tag = {};
         tag.name = result[0].trim();
@@ -87,7 +87,7 @@ GitStatistics.prototype.getMostRecentBranches = function(callback) {
         return;
       }
 
-      var result = line.split("|");
+      let result = line.split("|");
       if(result) {
         let branch = {};
         branch.name = result[0].trim();
@@ -104,8 +104,8 @@ GitStatistics.prototype.getMostRecentBranches = function(callback) {
 }
 
 GitStatistics.prototype.updateRepo = function(callback) {
-  var command = 'git --git-dir=' + this.repoPath + ' fetch --prune';
-  var child = exec(command, function (err, stdout, stderr) {
+  let command = 'git --git-dir=' + this.repoPath + ' fetch --prune';
+  let child = exec(command, function (err, stdout, stderr) {
     if(err) throw err;
 
     callback();
