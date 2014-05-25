@@ -1,6 +1,9 @@
-var path = require('path');
-var ncp = require('ncp').ncp;
-var temporary = require('temporary');
+'use strict'
+const
+  path = require('path'),
+  ncp = require('ncp').ncp,
+  temporary = require('temporary'),
+  rmdir = require('rimraf');
 
 function TestRepoHelper() {
   this.testRepoDir = new temporary.Dir();
