@@ -1,10 +1,13 @@
-var fs = require('fs');
-var chai = require('chai');
+'use strict'
+const
+  fs = require('fs'),
+  chai = require('chai'),
+  should = chai.should(),
+  expect = chai.expect,
+  Updater = require('../classes/updater.js'),
+  TestRepoHelper = require('./testRepoHelper.js');
+
 chai.use(require('chai-fuzzy'));
-var should = chai.should();
-var expect = chai.expect;
-var Updater = require('../classes/updater.js');
-var TestRepoHelper = require('./testRepoHelper.js');
 
 describe('Updater', function() {
   var self = this;
