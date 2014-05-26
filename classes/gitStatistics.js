@@ -43,7 +43,7 @@ GitStatistics.prototype.getTop10Committers = function(callback) {
 GitStatistics.prototype.getMostRecentTags = function(callback) {
   let
     limit = 5,
-    command = 'git --git-dir=' + this.repoPath + ' for-each-ref --format="%(refname:short) | %(committerdate) | %(taggerdate) | %(subject)" refs/tags --sort=-committerdate --count=' + limit;
+    command = 'git --git-dir=' + this.repoPath + ' for-each-ref --format="%(refname:short) | %(committerdate) | %(taggerdate) | %(authorname) | %(authoremail) | %(subject)" refs/tags --sort=-committerdate --count=' + limit;
 
   let child = exec(command, function (err, stdout, stderr) {
     if(err) throw err;
@@ -63,7 +63,9 @@ GitStatistics.prototype.getMostRecentTags = function(callback) {
         if(tag.date == '') {
           tag.date = result[2].trim();
         }
-        tag.message = result[3].trim();
+        tag.authorName = result[3].trim();
+        tag.authorEmail = result[4].trim();
+        tag.message = result[5].trim();
         tags.push(tag);
       }
     });

@@ -53,26 +53,36 @@ describe('GitStatistics', function() {
       gitStatistics.getMostRecentTags(function(data) {
         data.should.be.like(
           [{
+            "authorEmail": "<nicholas.j.campbell@gmail.com>",
+            "authorName": "Nick Campbell",
             "date": "Wed Mar 12 10:35:13 2014 -0400",
             "message": "Version bump.",
             "name": "v1.0.4"
           },
           {
+            "authorEmail": "<nicholas.j.campbell@gmail.com>",
+            "authorName": "Nick Campbell",
             "date": "Wed Jan 29 08:32:41 2014 -0500",
             "message": "Version bump.",
             "name": "1.0.3"
           },
           {
+            "authorEmail": "<nicholas.j.campbell@gmail.com>",
+            "authorName": "Nick Campbell",
             "date": "Tue Jan 28 16:25:17 2014 -0500",
             "message": "Version bump.",
             "name": "1.0.2"
           },
           {
+            "authorEmail": "<nicholas.j.campbell@gmail.com>",
+            "authorName": "Nick Campbell",
             "date": "Thu Sep 13 19:25:37 2012 -0400",
             "message": "Change timings in the failing test.",
             "name": "v1.0.1"
           },
           {
+            "authorEmail": "<nicholas.j.campbell@gmail.com>",
+            "authorName": "Nick Campbell",
             "date": "Tue Aug 7 00:18:28 2012 -0300",
             "message": "Update README.md",
             "name": "v1.0.0"
