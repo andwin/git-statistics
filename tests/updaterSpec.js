@@ -10,11 +10,12 @@ const
 chai.use(require('chai-fuzzy'));
 
 describe('Updater', function() {
-  var self = this;
-  var testRepoPath;
-  var testRepoHelper = new TestRepoHelper();
+  let testRepoPath;
+  let testRepoHelper = new TestRepoHelper();
 
   before(function(done) {
+    let self = this;
+
     testRepoPath = testRepoHelper.setupAllTestRepos(function(testRepoPath) {
       self.testRepoPath = testRepoPath;
       done();
@@ -30,7 +31,7 @@ describe('Updater', function() {
   describe('updateData', function() {
     it('should return expected output', function(done) {
 
-      var updater = new Updater(self.testRepoPath);
+      let updater = new Updater(this.testRepoPath);
 
       updater.updateData(function(data) {
         data.repos.should.be.like(["grunt-init_git", "node-cron_git", "all"]);
@@ -52,9 +53,9 @@ describe('Updater', function() {
 
   describe('getAllRepos', function() {
     it('should return array of all repos', function() {
-      var updater = new Updater(self.testRepoPath);
+      let updater = new Updater(this.testRepoPath);
 
-      var repos = updater.getAllRepos();
+      let repos = updater.getAllRepos();
 
       expect(repos).to.have.length.of(2);
       expect(repos).to.contain('grunt-init_git');
@@ -64,7 +65,7 @@ describe('Updater', function() {
 
   describe('calculateCombinedStatistics', function() {
     it('should return combined statistics for all repos', function(done) {
-      var updater = new Updater(self.testRepoPath);
+      let updater = new Updater(this.testRepoPath);
       updater.updateData(function(data) {
         expect(data.all.latestCommits).to.have.length.of(10);
         expect(data.all.top10Committers).to.have.length.of(10);
