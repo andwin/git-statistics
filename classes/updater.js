@@ -87,8 +87,8 @@ Updater.prototype.getAllRepos = function() {
 }
 
 Updater.prototype.formatResults = function(data, results) {
-  for (let i in results) {
-    for (let c in results[i]) {
+  for(let i in results) {
+    for(let c in results[i]) {
       data[c] = results[i][c];
     }
   }
