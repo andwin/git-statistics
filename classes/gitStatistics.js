@@ -1,7 +1,8 @@
 'use strict'
 const
   sys = require('sys'),
-  exec = require('child_process').exec;
+  exec = require('child_process').exec,
+  md5 = require('MD5');
 
 function GitStatistics(repoPath) {
   this.repoPath = repoPath;
@@ -12,7 +13,13 @@ GitStatistics.prototype.get10LatestCommits = function(callback) {
   let command = 'git --git-dir=' + this.repoPath + ' log --pretty=format:\'{"commit": "%h","authorName": "%an", "authorEmail": "%ae","date": "%ad","message": "%f"},\' -n' + limit;
   let child = exec(command, function (err, stdout, stderr) {
     let data = '[' + stdout.substring(0, stdout.length - 1) + ']';
-    callback(JSON.parse(data));
+    let jsonData = JSON.parse(data);
+
+    for(let i in jsonData) {
+      jsonData[i].authorEmailMD5 = md5(jsonData[i].authorEmail);
+    }
+
+    callback(jsonData);
   });
 };
 

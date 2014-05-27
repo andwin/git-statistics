@@ -34,6 +34,7 @@ describe('GitStatistics', function() {
         data.should.be.like(
           [{
             "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorEmailMD5": "795acba3ecda5352f28a3b0cbee3fd16",
             "authorName": "Nick Campbell",
             "commit": "5d948d7",
             "date": "Wed Apr 23 09:20:25 2014 -0400",
@@ -41,6 +42,7 @@ describe('GitStatistics', function() {
           },
           {
             "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorEmailMD5": "795acba3ecda5352f28a3b0cbee3fd16",
             "authorName": "Nick Campbell",
             "commit": "129c02f",
             "date": "Wed Mar 19 15:53:02 2014 -0400",
@@ -48,6 +50,7 @@ describe('GitStatistics', function() {
           },
           {
             "authorEmail": "mordytk@gmail.com",
+            "authorEmailMD5": "281ca5f3eef31445e0dec4278be44a72",
             "authorName": "Mordy Tikotzky",
             "commit": "293a262",
             "date": "Wed Mar 19 15:25:27 2014 -0400",
@@ -55,6 +58,7 @@ describe('GitStatistics', function() {
           },
           {
             "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorEmailMD5": "795acba3ecda5352f28a3b0cbee3fd16",
             "authorName": "Nick Campbell",
             "commit": "abe4872",
             "date": "Wed Mar 19 09:21:58 2014 -0400",
@@ -62,6 +66,7 @@ describe('GitStatistics', function() {
           },
           {
             "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorEmailMD5": "795acba3ecda5352f28a3b0cbee3fd16",
             "authorName": "Nick Campbell",
             "commit": "1f71ca7",
             "date": "Wed Mar 12 11:05:58 2014 -0400",
@@ -69,6 +74,7 @@ describe('GitStatistics', function() {
           },
           {
             "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorEmailMD5": "795acba3ecda5352f28a3b0cbee3fd16",
             "authorName": "Nick Campbell",
             "commit": "e66eaec",
             "date": "Wed Mar 12 10:35:13 2014 -0400",
@@ -76,6 +82,7 @@ describe('GitStatistics', function() {
           },
           {
             "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorEmailMD5": "795acba3ecda5352f28a3b0cbee3fd16",
             "authorName": "Nick Campbell",
             "commit": "1641174",
             "date": "Wed Mar 12 10:32:41 2014 -0400",
@@ -83,6 +90,7 @@ describe('GitStatistics', function() {
           },
           {
             "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorEmailMD5": "795acba3ecda5352f28a3b0cbee3fd16",
             "authorName": "Nick Campbell",
             "commit": "5db5790",
             "date": "Wed Mar 12 10:26:22 2014 -0400",
@@ -90,6 +98,7 @@ describe('GitStatistics', function() {
           },
           {
             "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorEmailMD5": "795acba3ecda5352f28a3b0cbee3fd16",
             "authorName": "Nick Campbell",
             "commit": "0604293",
             "date": "Mon Mar 10 09:51:53 2014 -0400",
@@ -97,6 +106,7 @@ describe('GitStatistics', function() {
           },
           {
             "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorEmailMD5": "795acba3ecda5352f28a3b0cbee3fd16",
             "authorName": "Nick Campbell",
             "commit": "6ebf9b2",
             "date": "Mon Mar 10 09:15:21 2014 -0400",
