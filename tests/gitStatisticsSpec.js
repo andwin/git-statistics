@@ -31,7 +31,78 @@ describe('GitStatistics', function() {
     it('should return 10 entries', function(done) {
       let gitStatistics = new GitStatistics(this.testRepoPath);
       gitStatistics.get10LatestCommits(function(data) {
-        expect(data).to.have.length.of(10);
+        data.should.be.like(
+          [{
+            "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorName": "Nick Campbell",
+            "commit": "5d948d7",
+            "date": "Wed Apr 23 09:20:25 2014 -0400",
+            "message": "Update-README.md"
+          },
+          {
+            "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorName": "Nick Campbell",
+            "commit": "129c02f",
+            "date": "Wed Mar 19 15:53:02 2014 -0400",
+            "message": "Merge-pull-request-88-from-tekay-patch-1"
+          },
+          {
+            "authorEmail": "mordytk@gmail.com",
+            "authorName": "Mordy Tikotzky",
+            "commit": "293a262",
+            "date": "Wed Mar 19 15:25:27 2014 -0400",
+            "message": "Capitalize-Constructors"
+          },
+          {
+            "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorName": "Nick Campbell",
+            "commit": "abe4872",
+            "date": "Wed Mar 19 09:21:58 2014 -0400",
+            "message": "Use-timezone-passed-in"
+          },
+          {
+            "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorName": "Nick Campbell",
+            "commit": "1f71ca7",
+            "date": "Wed Mar 12 11:05:58 2014 -0400",
+            "message": "Fix-failing-test"
+          },
+          {
+            "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorName": "Nick Campbell",
+            "commit": "e66eaec",
+            "date": "Wed Mar 12 10:35:13 2014 -0400",
+            "message": "Version-bump"
+          },
+          {
+            "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorName": "Nick Campbell",
+            "commit": "1641174",
+            "date": "Wed Mar 12 10:32:41 2014 -0400",
+            "message": "Make-the-limits-a-little-more-clear-to-the-user"
+          },
+          {
+            "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorName": "Nick Campbell",
+            "commit": "5db5790",
+            "date": "Wed Mar 12 10:26:22 2014 -0400",
+            "message": "Revert-Updated-to-suppoer-0-7-in-dow"
+          },
+          {
+            "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorName": "Nick Campbell",
+            "commit": "0604293",
+            "date": "Mon Mar 10 09:51:53 2014 -0400",
+            "message": "Updated-to-suppoer-0-7-in-dow"
+          },
+          {
+            "authorEmail": "nicholas.j.campbell@gmail.com",
+            "authorName": "Nick Campbell",
+            "commit": "6ebf9b2",
+            "date": "Mon Mar 10 09:15:21 2014 -0400",
+            "message": "Merge-pull-request-84-from-mle-ii-master"
+          }]
+        );
         done();
       });
     });

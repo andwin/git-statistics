@@ -9,7 +9,7 @@ function GitStatistics(repoPath) {
 
 GitStatistics.prototype.get10LatestCommits = function(callback) {
   let limit = 10;
-  let command = 'git --git-dir=' + this.repoPath + ' log --pretty=format:\'{"commit": "%h","author": "%an <%ae>","date": "%ad","message": "%f"},\' -n' + limit;
+  let command = 'git --git-dir=' + this.repoPath + ' log --pretty=format:\'{"commit": "%h","authorName": "%an", "authorEmail": "%ae","date": "%ad","message": "%f"},\' -n' + limit;
   let child = exec(command, function (err, stdout, stderr) {
     let data = '[' + stdout.substring(0, stdout.length - 1) + ']';
     callback(JSON.parse(data));
