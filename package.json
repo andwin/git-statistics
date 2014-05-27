@@ -5,14 +5,15 @@
   "private": true,
   "devDependencies": {},
   "dependencies": {
-    "express": "3.x",
-    "temporary": "0.0.8",
-    "ncp": "^0.5.1",
-    "mocha": "^1.18.2",
-    "chai": "^1.9.1",
+    "MD5": "^1.2.1",
     "async": "^0.8.0",
+    "chai": "^1.9.1",
+    "chai-fuzzy": "^1.4.0",
+    "express": "3.x",
+    "mocha": "^1.19.0",
+    "ncp": "^0.5.1",
     "rimraf": "^2.2.8",
-    "underscore": "^1.6.0",
-    "chai-fuzzy": "^1.4.0"
+    "temporary": "0.0.8",
+    "underscore": "^1.6.0"
   }
 }
