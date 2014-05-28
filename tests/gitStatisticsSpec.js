@@ -218,4 +218,14 @@ describe('GitStatistics', function() {
       })
     });
   });
+
+  describe('getTotalNumberOfTags', function() {
+    it('should return correct total number of tags', function(done) {
+      let gitStatistics = new GitStatistics(this.testRepoPath);
+      gitStatistics.getTotalNumberOfTags(function(totalNumberOfTags) {
+        expect(totalNumberOfTags).to.equal(12);
+        done();
+      })
+    });
+  });
 });
