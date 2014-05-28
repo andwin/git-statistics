@@ -127,6 +127,21 @@ GitStatistics.prototype.getTotalNumberOfCommits = function(callback) {
   });
 }
 
+GitStatistics.prototype.getTotalNumberOfBranches = function(callback) {
+  let command = 'git --git-dir=' + this.repoPath + ' branch -a | wc -l';
+
+  let child = exec(command, function(err, stdout, stderr) {
+    if(err) throw err;
+
+    let totalNumberOfBranches = parseInt(stdout);
+    if(totalNumberOfBranches == NaN) {
+      totalNumberOfBranches = 0
+    }
+
+    callback(totalNumberOfBranches);
+  });
+}
+
 GitStatistics.prototype.updateRepo = function(callback) {
   let command = 'git --git-dir=' + this.repoPath + ' fetch --prune';
   let child = exec(command, function (err, stdout, stderr) {

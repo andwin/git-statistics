@@ -200,10 +200,20 @@ describe('GitStatistics', function() {
   });
 
   describe('getTotalNumberOfCommits', function() {
-    it('should return correct number of total commits', function(done) {
+    it('should return correct total number of commits', function(done) {
       let gitStatistics = new GitStatistics(this.testRepoPath);
       gitStatistics.getTotalNumberOfCommits(function(totalNumberOfCommits) {
         expect(totalNumberOfCommits).to.equal(177);
+        done();
+      })
+    });
+  });
+
+  describe('getTotalNumberOfBranches', function() {
+    it('should return correct total number of branches', function(done) {
+      let gitStatistics = new GitStatistics(this.testRepoPath);
+      gitStatistics.getTotalNumberOfBranches(function(totalNumberOfBranches) {
+        expect(totalNumberOfBranches).to.equal(2);
         done();
       })
     });
