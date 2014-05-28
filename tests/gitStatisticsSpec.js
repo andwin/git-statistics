@@ -199,4 +199,13 @@ describe('GitStatistics', function() {
     });
   });
 
+  describe('getTotalNumberOfCommits', function() {
+    it('should return correct number of total commits', function(done) {
+      let gitStatistics = new GitStatistics(this.testRepoPath);
+      gitStatistics.getTotalNumberOfCommits(function(totalNumberOfCommits) {
+        expect(totalNumberOfCommits).to.equal(177);
+        done();
+      })
+    });
+  });
 });
