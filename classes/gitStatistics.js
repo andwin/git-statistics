@@ -157,6 +157,21 @@ GitStatistics.prototype.getTotalNumberOfTags = function(callback) {
   });
 }
 
+GitStatistics.prototype.getNumberOfLinesAddedAndRemoved = function(callback) {
+  let command = 'git --git-dir=' + this.repoPath + ' log --numstat --since=\'30 days ago\' --pretty="%H" | awk \'NF==3 {plus+=$1; minus+=$2} END {printf("%d,%d", plus, minus)}\'';
+
+  let child = exec(command, function(err, stdout, stderr) {
+    if(err) throw err;
+
+    let result = stdout.split(',');
+    let data = {};
+    data.linesAdded = parseInt(result[0]);
+    data.linesRemoved = parseInt(result[1]);
+
+    callback(data);
+  });
+}
+
 GitStatistics.prototype.updateRepo = function(callback) {
   let command = 'git --git-dir=' + this.repoPath + ' fetch --prune';
   let child = exec(command, function (err, stdout, stderr) {

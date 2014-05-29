@@ -228,4 +228,19 @@ describe('GitStatistics', function() {
       })
     });
   });
+
+  describe('getNumberOfLinesAddedAndRemoved', function() {
+    it('should return the correct number of lines added and removed', function(done) {
+      let gitStatistics = new GitStatistics(this.testRepoPath);
+      gitStatistics.getNumberOfLinesAddedAndRemoved(function(data) {
+        data.should.be.like(
+          {
+            linesAdded: 0,
+            linesRemoved: 0
+          }
+        );
+        done();
+      });
+    });
+  });
 });
