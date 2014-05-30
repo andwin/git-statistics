@@ -51,6 +51,17 @@ describe('Updater', function() {
     });
   });
 
+  describe('getStatistics', function() {
+    it('should return correct statistics', function(done){
+      let updater = new Updater(this.testRepoPath);
+
+      updater.getStatistics(updater.gitStatisticsArray[0], function(data){
+        console.log(data);
+        done();
+      });
+    });
+  });
+
   describe('getAllRepos', function() {
     it('should return array of all repos', function() {
       let updater = new Updater(this.testRepoPath);
