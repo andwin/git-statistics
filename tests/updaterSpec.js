@@ -55,8 +55,14 @@ describe('Updater', function() {
     it('should return correct statistics', function(done){
       let updater = new Updater(this.testRepoPath);
 
-      updater.getStatistics(updater.gitStatisticsArray[0], function(data){
-        console.log(data);
+      updater.getStatistics(updater.gitStatisticsArray[1], function(data){
+        data.should.be.like({
+          numberOfCommits: 177,
+          numberOfBranches: 2,
+          numberOfTags: 12,
+          linesAdded: 0,
+          linesRemoved: 0
+        });
         done();
       });
     });
