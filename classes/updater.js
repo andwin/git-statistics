@@ -7,6 +7,13 @@ const
 
 function Updater(pathToReposDir) {
   this.pathToReposDir = pathToReposDir;
+  this.repos = this.getAllRepos();
+  this.gitStatisticsArray = new Array();
+  let self = this;
+
+  this.repos.forEach(function(repoName) {
+    self.gitStatisticsArray.push(new GitStatistics(path.join(self.pathToReposDir, repoName)));
+  });
 }
 
 Updater.prototype.statisticsSections = function(gitStatistics) {
@@ -41,14 +48,8 @@ Updater.prototype.statisticsSections = function(gitStatistics) {
 
 Updater.prototype.updateData = function(done) {
   let self = this;
-  let repos = this.getAllRepos();
-  let gitStatisticsArray = new Array();
 
-  repos.forEach(function(repoName) {
-    gitStatisticsArray.push(new GitStatistics(path.join(self.pathToReposDir, repoName)));
-  });
-
-  async.map(gitStatisticsArray, function(gitStatistics, repoCallback) {
+  async.map(self.gitStatisticsArray, function(gitStatistics, repoCallback) {
     async.series(
       self.statisticsSections(gitStatistics),
       function(err, results) {
@@ -61,7 +62,7 @@ Updater.prototype.updateData = function(done) {
     );
   }, function(err, results) {
     let data = {};
-    data.repos = repos;
+    data.repos = self.repos;
     self.formatResults(data, results);
 
     self.calculateCombinedStatistics(data, function(combinedStatistics) {
