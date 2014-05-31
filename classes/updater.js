@@ -159,6 +159,10 @@ Updater.prototype.calculateCombinedStatistics = function(data, callback) {
   allBranches.sort(function(a,b) { return new Date(a.date) - new Date(b.data) } );
   combinedStatistics.mostRecentBranches = allBranches.slice(0, 5);
 
+  // statistics
+  let statistics = this.getCombinedQuickStats(data, 'statistics');
+  combinedStatistics.statistics = statistics;
+
   callback({all: combinedStatistics});
 };
 
@@ -177,6 +181,29 @@ Updater.prototype.getCombinedStatisticsSection = function(data, section) {
     }
   }
   return items;
+};
+
+Updater.prototype.getCombinedQuickStats = function(data) {
+  let combinesQuickStats = {
+    numberOfCommits: 0,
+    numberOfBranches: 0,
+    numberOfTags: 0,
+    linesAdded: 0,
+    linesRemoved: 0
+  };
+
+  for(let i in data) {
+    if(i == 'repos') {
+      continue;
+    }
+
+    for(let info in combinesQuickStats) {
+      combinesQuickStats[info] +=  data[i].statistics[info];
+    }
+  }
+
+  return combinesQuickStats;
+
 };
 
 module.exports = Updater;

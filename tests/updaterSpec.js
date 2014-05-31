@@ -102,6 +102,13 @@ describe('Updater', function() {
         expect(data.all.top10Committers).to.have.length.of(10);
         expect(data.all.mostRecentTags).to.have.length.of(5);
         expect(data.all.mostRecentBranches).to.have.length.of(4);
+        data.all.statistics.should.be.like({
+          "numberOfCommits": 270,
+          "numberOfBranches": 4,
+          "numberOfTags": 14,
+          "linesAdded": 3,
+          "linesRemoved": 1
+        });
 
         done();
       });
