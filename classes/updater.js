@@ -14,7 +14,7 @@ function Updater(pathToReposDir) {
   this.repos.forEach(function(repoName) {
     self.gitStatisticsArray.push(new GitStatistics(path.join(self.pathToReposDir, repoName)));
   });
-}
+};
 
 Updater.prototype.statisticsSections = function(gitStatistics) {
   let self = this;
@@ -78,10 +78,11 @@ Updater.prototype.updateData = function(done) {
       done(data);
     });
   });
-}
+};
 
 Updater.prototype.getStatistics = function(gitStatistics, callback) {
   let self = this;
+
   async.series([
     function(callback) {
       gitStatistics.getTotalNumberOfCommits(function(numberOfCommits) {
@@ -109,7 +110,7 @@ Updater.prototype.getStatistics = function(gitStatistics, callback) {
     self.formatResults(data, results);
     callback(data);
   });
-}
+};
 
 Updater.prototype.getAllRepos = function() {
   let self = this;
@@ -123,7 +124,7 @@ Updater.prototype.getAllRepos = function() {
   });
 
   return repos;
-}
+};
 
 Updater.prototype.formatResults = function(data, results) {
   for(let i in results) {
@@ -131,7 +132,7 @@ Updater.prototype.formatResults = function(data, results) {
       data[c] = results[i][c];
     }
   }
-}
+};
 
 Updater.prototype.calculateCombinedStatistics = function(data, callback) {
   let combinedStatistics = {};
@@ -157,7 +158,7 @@ Updater.prototype.calculateCombinedStatistics = function(data, callback) {
   combinedStatistics.mostRecentBranches = allBranches.slice(0, 5);
 
   callback({all: combinedStatistics});
-}
+};
 
 Updater.prototype.getCombinedStatisticsSection = function(data, section) {
   let items = [];
@@ -173,6 +174,6 @@ Updater.prototype.getCombinedStatisticsSection = function(data, section) {
     }
   }
   return items;
-}
+};
 
 module.exports = Updater;
