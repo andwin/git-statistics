@@ -11,6 +11,7 @@ function TestRepoHelper() {
 
 TestRepoHelper.prototype.setupTestRepo = function(repoName, callback) {
   let self = this;
+
   ncp(path.join(__dirname, 'repos', repoName), self.testRepoDir.path, function(err) {
     if(err) throw err;
 
@@ -20,6 +21,7 @@ TestRepoHelper.prototype.setupTestRepo = function(repoName, callback) {
 
 TestRepoHelper.prototype.setupAllTestRepos = function(callback) {
   let self = this;
+
   ncp(path.join(__dirname, 'repos'), self.testRepoDir.path, function(err) {
     if(err) throw err;
 
@@ -29,6 +31,7 @@ TestRepoHelper.prototype.setupAllTestRepos = function(callback) {
 
 TestRepoHelper.prototype.cleanup = function(callback) {
   let self = this;
+
   rmdir(self.testRepoDir.path, function(err) {
     callback();
   });

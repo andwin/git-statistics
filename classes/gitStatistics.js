@@ -39,6 +39,7 @@ GitStatistics.prototype.getTop10Committers = function(callback) {
     lines.forEach(function(line) {
       let regex = /(\d+)\s(.+)/
       let result = line.match(regex);
+
       if(result) {
         let committer = {};
         committer.numberOfCommits = result[1];

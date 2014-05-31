@@ -113,9 +113,11 @@ Updater.prototype.getStatistics = function(gitStatistics, callback) {
 };
 
 Updater.prototype.getAllRepos = function() {
-  let self = this;
-  let repos = new Array();
-  let files = fs.readdirSync(this.pathToReposDir);
+  let
+    self = this,
+    repos = new Array(),
+    files = fs.readdirSync(this.pathToReposDir);
+
   files.forEach(function(file) {
     let repoPath = path.join(self.pathToReposDir, file);
     if(fs.lstatSync(repoPath).isDirectory()) {
@@ -162,6 +164,7 @@ Updater.prototype.calculateCombinedStatistics = function(data, callback) {
 
 Updater.prototype.getCombinedStatisticsSection = function(data, section) {
   let items = [];
+
   for(let i in data) {
     if(data[i] == 'repos') {
       continue;
