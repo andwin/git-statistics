@@ -84,22 +84,22 @@ Updater.prototype.getStatistics = function(gitStatistics, callback) {
   let self = this;
   async.series([
     function(callback) {
-      gitStatistics.getTotalNumberOfCommits(function(numberOfCommits){
+      gitStatistics.getTotalNumberOfCommits(function(numberOfCommits) {
         callback(null, { numberOfCommits: numberOfCommits });
       })
     },
     function(callback) {
-      gitStatistics.getTotalNumberOfBranches(function(numberOfBranches){
+      gitStatistics.getTotalNumberOfBranches(function(numberOfBranches) {
         callback(null, { numberOfBranches: numberOfBranches });
       })
     },
     function(callback) {
-      gitStatistics.getTotalNumberOfTags(function(numberOfTags){
+      gitStatistics.getTotalNumberOfTags(function(numberOfTags) {
         callback(null, { numberOfTags: numberOfTags });
       })
     },
     function(callback) {
-      gitStatistics.getNumberOfLinesAddedAndRemoved(function(result){
+      gitStatistics.getNumberOfLinesAddedAndRemoved(function(result) {
         callback(null, result);
       })
     }
