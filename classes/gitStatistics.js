@@ -9,8 +9,10 @@ function GitStatistics(repoPath) {
 };
 
 GitStatistics.prototype.get10LatestCommits = function(callback) {
-  let limit = 10;
-  let command = 'git --git-dir=' + this.repoPath + ' log --pretty=format:\'{"commit": "%h","authorName": "%an", "authorEmail": "%ae","date": "%ad","message": "%f"},\' -n' + limit;
+  let
+    limit = 10,
+    command = 'git --git-dir=' + this.repoPath + ' log --pretty=format:\'{"commit": "%h","authorName": "%an", "authorEmail": "%ae","date": "%ad","message": "%f"},\' -n' + limit;
+
   let child = exec(command, function (err, stdout, stderr) {
     let data = '[' + stdout.substring(0, stdout.length - 1) + ']';
     let jsonData = JSON.parse(data);
@@ -24,8 +26,10 @@ GitStatistics.prototype.get10LatestCommits = function(callback) {
 };
 
 GitStatistics.prototype.getTop10Committers = function(callback) {
-  let limit = 10;
-  let command = 'git --git-dir=' + this.repoPath + ' shortlog -s < /dev/tty | sort -rn | head -n' + limit;
+  let
+    limit = 10,
+    command = 'git --git-dir=' + this.repoPath + ' shortlog -s < /dev/tty | sort -rn | head -n' + limit;
+
   let child = exec(command, function (err, stdout, stderr) {
     if(err) throw err;
 
@@ -79,7 +83,7 @@ GitStatistics.prototype.getMostRecentTags = function(callback) {
 
     callback(tags);
   });
-}
+};
 
 GitStatistics.prototype.getMostRecentBranches = function(callback) {
   let
@@ -110,7 +114,7 @@ GitStatistics.prototype.getMostRecentBranches = function(callback) {
 
     callback(branches);
   });
-}
+};
 
 GitStatistics.prototype.getTotalNumberOfCommits = function(callback) {
   let command = 'git --git-dir=' + this.repoPath + ' rev-list HEAD --count';
@@ -125,7 +129,7 @@ GitStatistics.prototype.getTotalNumberOfCommits = function(callback) {
 
     callback(totalNumberOfCommits);
   });
-}
+};
 
 GitStatistics.prototype.getTotalNumberOfBranches = function(callback) {
   let command = 'git --git-dir=' + this.repoPath + ' branch -a | wc -l';
@@ -140,7 +144,7 @@ GitStatistics.prototype.getTotalNumberOfBranches = function(callback) {
 
     callback(totalNumberOfBranches);
   });
-}
+};
 
 GitStatistics.prototype.getTotalNumberOfTags = function(callback) {
   let command = 'git --git-dir=' + this.repoPath + ' tag -l | wc -l';
@@ -155,7 +159,7 @@ GitStatistics.prototype.getTotalNumberOfTags = function(callback) {
 
     callback(totalNumberOfTags);
   });
-}
+};
 
 GitStatistics.prototype.getNumberOfLinesAddedAndRemoved = function(callback) {
   let command = 'git --git-dir=' + this.repoPath + ' log --numstat --since=\'30 days ago\' --pretty="%H" | awk \'NF==3 {plus+=$1; minus+=$2} END {printf("%d,%d", plus, minus)}\'';
@@ -170,7 +174,7 @@ GitStatistics.prototype.getNumberOfLinesAddedAndRemoved = function(callback) {
 
     callback(data);
   });
-}
+};
 
 GitStatistics.prototype.updateRepo = function(callback) {
   let command = 'git --git-dir=' + this.repoPath + ' fetch --prune';
@@ -179,6 +183,6 @@ GitStatistics.prototype.updateRepo = function(callback) {
 
     callback();
   });
-}
+};
 
 module.exports = GitStatistics;
