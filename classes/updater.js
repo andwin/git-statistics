@@ -17,6 +17,8 @@ function Updater(pathToReposDir) {
 }
 
 Updater.prototype.statisticsSections = function(gitStatistics) {
+  let self = this;
+
   return [
     function(callback) {
       gitStatistics.updateRepo(function() {
@@ -41,6 +43,11 @@ Updater.prototype.statisticsSections = function(gitStatistics) {
     function(callback) {
       gitStatistics.getMostRecentBranches(function(mostRecentBranches) {
         callback(null, { mostRecentBranches: mostRecentBranches });
+      });
+    },
+    function(callback) {
+      self.getStatistics(gitStatistics, function(statistics) {
+        callback(null, { statistics: statistics });
       });
     }
   ]

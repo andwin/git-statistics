@@ -40,11 +40,25 @@ describe('Updater', function() {
         expect(data['grunt-init_git'].top10Committers).to.have.length.of(10);
         expect(data['grunt-init_git'].mostRecentTags).to.have.length.of(2);
         expect(data['grunt-init_git'].mostRecentBranches).to.have.length.of(2);
+        data['grunt-init_git'].statistics.should.be.like({
+          "numberOfCommits": 93,
+          "numberOfBranches": 2,
+          "numberOfTags": 2,
+          "linesAdded": 3,
+          "linesRemoved": 1
+        });
 
         expect(data['node-cron_git'].latestCommits).to.have.length.of(10);
         expect(data['node-cron_git'].top10Committers).to.have.length.of(10);
         expect(data['node-cron_git'].mostRecentTags).to.have.length.of(5);
         expect(data['node-cron_git'].mostRecentBranches).to.have.length.of(2);
+        data['node-cron_git'].statistics.should.be.like({
+          "numberOfCommits": 177,
+          "numberOfBranches": 2,
+          "numberOfTags": 12,
+          "linesAdded": 0,
+          "linesRemoved": 0
+        });
 
         done();
       });
