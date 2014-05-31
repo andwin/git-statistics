@@ -13,7 +13,7 @@ GitStatistics.prototype.get10LatestCommits = function(callback) {
     limit = 10,
     command = 'git --git-dir=' + this.repoPath + ' log --pretty=format:\'{"commit": "%h","authorName": "%an", "authorEmail": "%ae","date": "%ad","message": "%f"},\' -n' + limit;
 
-  let child = exec(command, function (err, stdout, stderr) {
+  let child = exec(command, function(err, stdout, stderr) {
     let data = '[' + stdout.substring(0, stdout.length - 1) + ']';
     let jsonData = JSON.parse(data);
 
@@ -30,7 +30,7 @@ GitStatistics.prototype.getTop10Committers = function(callback) {
     limit = 10,
     command = 'git --git-dir=' + this.repoPath + ' shortlog -s < /dev/tty | sort -rn | head -n' + limit;
 
-  let child = exec(command, function (err, stdout, stderr) {
+  let child = exec(command, function(err, stdout, stderr) {
     if(err) throw err;
 
     let committers = [];
@@ -57,7 +57,7 @@ GitStatistics.prototype.getMostRecentTags = function(callback) {
     limit = 5,
     command = 'git --git-dir=' + this.repoPath + ' for-each-ref --format="%(refname:short) | %(committerdate) | %(taggerdate) | %(authorname) | %(authoremail) | %(subject)" refs/tags --sort=-committerdate --count=' + limit;
 
-  let child = exec(command, function (err, stdout, stderr) {
+  let child = exec(command, function(err, stdout, stderr) {
     if(err) throw err;
 
     let tags = [];
@@ -91,7 +91,7 @@ GitStatistics.prototype.getMostRecentBranches = function(callback) {
     limit = 5,
     command = 'git --git-dir=' + this.repoPath + ' for-each-ref --sort=-committerdate refs/heads/ --format="%(refname:short) | %(committerdate) | %(authorname) | %(authoremail) | %(subject)" --count=' + limit;
 
-  let child = exec(command, function (err, stdout, stderr) {
+  let child = exec(command, function(err, stdout, stderr) {
     if(err) throw err;
 
     let branches = [];
@@ -179,7 +179,7 @@ GitStatistics.prototype.getNumberOfLinesAddedAndRemoved = function(callback) {
 
 GitStatistics.prototype.updateRepo = function(callback) {
   let command = 'git --git-dir=' + this.repoPath + ' fetch --prune';
-  let child = exec(command, function (err, stdout, stderr) {
+  let child = exec(command, function(err, stdout, stderr) {
     if(err) throw err;
 
     callback();
