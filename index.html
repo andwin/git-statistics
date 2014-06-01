@@ -120,11 +120,15 @@
                             <div class="list-group">
                                 <span href="#" class="list-group-item">
                                     <i class="fa fa-user fa-fw"></i> Number of branches
-                                    <span class="pull-right text-muted small"><em>44</em></span>
+                                    <span class="pull-right text-muted small"><em>{{currentRepoStatistics.quickStats.numberOfBranches}}</em></span>
                                 </span>
                                 <span class="list-group-item">
                                     <i class="fa fa-user fa-fw"></i> Number of tags
-                                    <span class="pull-right text-muted small"><em>24</em></span>
+                                    <span class="pull-right text-muted small"><em>{{currentRepoStatistics.quickStats.numberOfTags}}</em></span>
+                                </span>
+                                <span class="list-group-item">
+                                    <i class="fa fa-user fa-fw"></i> Total number of commits
+                                    <span class="pull-right text-muted small"><em>{{currentRepoStatistics.quickStats.numberOfCommits}}</em></span>
                                 </span>
                             </div>
                             <h4>Most recent tags</h4>
