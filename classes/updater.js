@@ -170,7 +170,7 @@ Updater.prototype.getCombinedStatisticsSection = function(data, section) {
   let items = [];
 
   for(let i in data) {
-    if(data[i] == 'repos') {
+    if(i == 'repos') {
       continue;
     }
 
