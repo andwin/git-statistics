@@ -40,7 +40,7 @@ describe('Updater', function() {
         expect(data['grunt-init_git'].top10Committers).to.have.length.of(10);
         expect(data['grunt-init_git'].mostRecentTags).to.have.length.of(2);
         expect(data['grunt-init_git'].mostRecentBranches).to.have.length.of(2);
-        data['grunt-init_git'].statistics.should.be.like({
+        data['grunt-init_git'].quickStats.should.be.like({
           "numberOfCommits": 93,
           "numberOfBranches": 2,
           "numberOfTags": 2,
@@ -52,7 +52,7 @@ describe('Updater', function() {
         expect(data['node-cron_git'].top10Committers).to.have.length.of(10);
         expect(data['node-cron_git'].mostRecentTags).to.have.length.of(5);
         expect(data['node-cron_git'].mostRecentBranches).to.have.length.of(2);
-        data['node-cron_git'].statistics.should.be.like({
+        data['node-cron_git'].quickStats.should.be.like({
           "numberOfCommits": 177,
           "numberOfBranches": 2,
           "numberOfTags": 12,
@@ -65,11 +65,11 @@ describe('Updater', function() {
     });
   });
 
-  describe('getStatistics', function() {
+  describe('getQuickStats', function() {
     it('should return correct statistics', function(done){
       let updater = new Updater(this.testRepoPath);
 
-      updater.getStatistics(updater.gitStatisticsArray[1], function(data){
+      updater.getQuickStats(updater.gitStatisticsArray[1], function(data){
         data.should.be.like({
           numberOfCommits: 177,
           numberOfBranches: 2,
@@ -102,7 +102,7 @@ describe('Updater', function() {
         expect(data.all.top10Committers).to.have.length.of(10);
         expect(data.all.mostRecentTags).to.have.length.of(5);
         expect(data.all.mostRecentBranches).to.have.length.of(4);
-        data.all.statistics.should.be.like({
+        data.all.quickStats.should.be.like({
           "numberOfCommits": 270,
           "numberOfBranches": 4,
           "numberOfTags": 14,

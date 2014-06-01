@@ -46,8 +46,8 @@ Updater.prototype.statisticsSections = function(gitStatistics) {
       });
     },
     function(callback) {
-      self.getStatistics(gitStatistics, function(statistics) {
-        callback(null, { statistics: statistics });
+      self.getQuickStats(gitStatistics, function(quickStats) {
+        callback(null, { quickStats: quickStats });
       });
     }
   ]
@@ -80,7 +80,7 @@ Updater.prototype.updateData = function(done) {
   });
 };
 
-Updater.prototype.getStatistics = function(gitStatistics, callback) {
+Updater.prototype.getQuickStats = function(gitStatistics, callback) {
   let self = this;
 
   async.series([
@@ -159,9 +159,9 @@ Updater.prototype.calculateCombinedStatistics = function(data, callback) {
   allBranches.sort(function(a,b) { return new Date(a.date) - new Date(b.data) } );
   combinedStatistics.mostRecentBranches = allBranches.slice(0, 5);
 
-  // statistics
-  let statistics = this.getCombinedQuickStats(data, 'statistics');
-  combinedStatistics.statistics = statistics;
+  // quickStats
+  let quickStats = this.getCombinedQuickStats(data, 'quickStats');
+  combinedStatistics.quickStats = quickStats;
 
   callback({all: combinedStatistics});
 };
@@ -198,7 +198,7 @@ Updater.prototype.getCombinedQuickStats = function(data) {
     }
 
     for(let info in combinesQuickStats) {
-      combinesQuickStats[info] +=  data[i].statistics[info];
+      combinesQuickStats[info] +=  data[i].quickStats[info];
     }
   }
 
