@@ -59,19 +59,4 @@ $(function() {
         hideHover: 'auto',
         resize: true
     });
-
-    Morris.Donut({
-        element: 'morris-donut-chart',
-        data: [{
-            label: "Lines added",
-            value: 12
-        }, {
-            label: "Lines deleted",
-            value: 30
-        }, {
-            label: "Lines changed",
-            value: 20
-        }],
-        resize: true
-    });
 });
